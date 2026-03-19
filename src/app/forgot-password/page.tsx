@@ -3,10 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { TrendingUp, Loader2, CheckCircle } from 'lucide-react'
+import { Loader2, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 
 export default function ForgotPasswordPage() {
@@ -34,72 +31,69 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
-      <div className="w-full max-w-md">
-        <div className="flex items-center justify-center gap-2 mb-8">
-          <TrendingUp className="h-8 w-8 text-green-600" />
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">Competitiel</span>
+    <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center px-4">
+      <div className="max-w-md w-full">
+        <div className="text-center mb-8">
+          <span className="font-extrabold text-2xl tracking-tight text-black">Competitiel</span>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-8">
+        <div className="bg-white rounded-[32px] border border-[#E5E7EB] shadow-card p-8 md:p-10">
           {sent ? (
             <div className="text-center">
               <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Check your email
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <h2 className="text-2xl font-bold text-black mb-2">Check your email</h2>
+              <p className="text-[#4B5563] mb-6">
                 We sent a password reset link to <strong>{email}</strong>
               </p>
-              <Link href="/login">
-                <Button variant="outline" className="w-full">
-                  Back to sign in
-                </Button>
+              <Link
+                href="/login"
+                className="block w-full text-center rounded-full bg-green-600 hover:bg-green-700 text-white py-3.5 font-semibold transition-colors"
+              >
+                Back to sign in
               </Link>
             </div>
           ) : (
             <>
-              <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Reset password
-                </h1>
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  Enter your email and we&apos;ll send you a reset link.
-                </p>
-              </div>
+              <h2 className="text-2xl font-bold text-black mb-2">Reset password</h2>
+              <p className="text-sm text-[#4B5563] mb-6">
+                Enter your email and we&apos;ll send you a reset link.
+              </p>
 
               <form onSubmit={handleReset} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-black mb-1.5">
+                    Email
+                  </label>
+                  <input
                     id="email"
                     type="email"
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-green-600 transition-colors"
                   />
                 </div>
 
-                <Button
+                <button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
                   disabled={loading}
+                  className="rounded-full bg-green-600 hover:bg-green-700 text-white w-full py-3.5 font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <Loader2 className="h-4 w-4 animate-spin" />
                       Sending...
                     </>
                   ) : (
                     'Send reset link'
                   )}
-                </Button>
+                </button>
               </form>
 
-              <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+              <p className="mt-6 text-center text-sm text-[#4B5563]">
                 Remember your password?{' '}
-                <Link href="/login" className="text-green-600 hover:text-green-700 font-medium">
+                <Link href="/login" className="font-medium text-green-600 hover:text-green-700 transition-colors">
                   Sign in
                 </Link>
               </p>

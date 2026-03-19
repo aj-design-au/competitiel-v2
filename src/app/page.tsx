@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { TrendingUp, BarChart3, Shield, Zap, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 export default async function HomePage() {
   const supabase = await createClient()
@@ -22,10 +22,7 @@ export default async function HomePage() {
           className="w-full max-w-5xl flex items-center justify-between rounded-full bg-white border border-[#E5E7EB] px-5 py-3"
           style={{ boxShadow: '0 10px 25px -5px rgba(0,0,0,0.04)' }}
         >
-          <div className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-black" />
-            <span className="text-base font-bold text-black">Competitiel</span>
-          </div>
+          <span className="text-base font-extrabold text-black tracking-tight">Competitiel</span>
           <div className="flex items-center gap-3">
             <Link
               href="/login"
@@ -35,7 +32,7 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-black text-white px-5 py-2 text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="rounded-full bg-green-600 hover:bg-green-700 text-white px-5 py-2 text-sm font-semibold transition-colors"
             >
               Get started
             </Link>
@@ -44,28 +41,22 @@ export default async function HomePage() {
       </header>
 
       {/* Hero */}
-      <section className="py-32 px-6">
+      <section className="py-24 px-6">
         <div className="mx-auto max-w-5xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#F3F4F6] border border-[#E5E7EB] px-4 py-1.5 text-sm font-medium text-[#4B5563] mb-8">
-            <Zap className="h-3.5 w-3.5" />
-            Powered by Gemini AI
-          </div>
-          <h1
-            className="font-extrabold text-black leading-none mb-6"
-            style={{ fontSize: 'clamp(40px, 7vw, 72px)', letterSpacing: '-0.04em' }}
-          >
+          <div className="text-xs font-bold tracking-widest text-[#9CA3AF] uppercase mb-4">01</div>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-black leading-none mb-6">
             Stop guessing.
             <br />
-            Start winning on price.
+            <span className="text-green-600">Start winning</span> on price.
           </h1>
-          <p className="text-[18px] text-[#4B5563] max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-[18px] text-[#4B5563] max-w-xl mx-auto mb-10 leading-relaxed">
             Track competitor prices, spot trends, and get AI-powered recommendations to
             optimise your pricing strategy — all in one dashboard.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/signup"
-              className="rounded-full bg-black text-white px-8 py-4 text-base font-semibold hover:opacity-90 transition-opacity"
+              className="rounded-full bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-base font-semibold transition-colors"
             >
               Start for free
             </Link>
@@ -80,7 +71,7 @@ export default async function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="py-24 px-6">
+      <section className="bg-[#F1F3F5] py-24 px-6">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <h2
@@ -95,42 +86,30 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div
-              className="bg-white rounded-[32px] border border-[#F3F4F6] p-8 md:p-10"
-              style={{ boxShadow: '0 20px 40px -12px rgba(0,0,0,0.05)' }}
-            >
-              <div className="bg-[#F3F4F6] rounded-2xl p-3 w-12 h-12 flex items-center justify-center mb-6">
-                <BarChart3 className="h-5 w-5 text-black" />
-              </div>
-              <h3 className="text-lg font-semibold text-black mb-2">Price Comparison Table</h3>
+            {/* Card 1 */}
+            <div className="bg-white rounded-[32px] shadow-card border border-[#F3F4F6] p-8 md:p-10 flex flex-col">
+              <div className="text-5xl font-black text-green-50 mb-6 leading-none select-none">01</div>
+              <h3 className="text-lg font-semibold text-black mb-3">Price Comparison Table</h3>
               <p className="text-[#4B5563] leading-relaxed">
                 Side-by-side comparison of your prices vs competitors with status badges,
                 trend sparklines, and inline editing.
               </p>
             </div>
 
-            <div
-              className="bg-white rounded-[32px] border border-[#F3F4F6] p-8 md:p-10"
-              style={{ boxShadow: '0 20px 40px -12px rgba(0,0,0,0.05)' }}
-            >
-              <div className="bg-[#F3F4F6] rounded-2xl p-3 w-12 h-12 flex items-center justify-center mb-6">
-                <Zap className="h-5 w-5 text-black" />
-              </div>
-              <h3 className="text-lg font-semibold text-black mb-2">AI-Powered Insights</h3>
-              <p className="text-[#4B5563] leading-relaxed">
+            {/* Card 2 — inverse */}
+            <div className="bg-black rounded-[32px] shadow-card border border-[#F3F4F6] p-8 md:p-10 flex flex-col">
+              <div className="text-5xl font-black text-white/10 mb-6 leading-none select-none">02</div>
+              <h3 className="text-lg font-semibold text-white mb-3">AI-Powered Insights</h3>
+              <p className="text-white/60 leading-relaxed">
                 Gemini AI analyses your pricing data and delivers actionable recommendations,
                 pattern detection, and competitive positioning.
               </p>
             </div>
 
-            <div
-              className="bg-white rounded-[32px] border border-[#F3F4F6] p-8 md:p-10"
-              style={{ boxShadow: '0 20px 40px -12px rgba(0,0,0,0.05)' }}
-            >
-              <div className="bg-[#F3F4F6] rounded-2xl p-3 w-12 h-12 flex items-center justify-center mb-6">
-                <Shield className="h-5 w-5 text-black" />
-              </div>
-              <h3 className="text-lg font-semibold text-black mb-2">Smart Price Alerts</h3>
+            {/* Card 3 */}
+            <div className="bg-white rounded-[32px] shadow-card border border-[#F3F4F6] p-8 md:p-10 flex flex-col">
+              <div className="text-5xl font-black text-green-50 mb-6 leading-none select-none">03</div>
+              <h3 className="text-lg font-semibold text-black mb-3">Smart Price Alerts</h3>
               <p className="text-[#4B5563] leading-relaxed">
                 Get notified when competitor prices change significantly or when your
                 margins drop below target.
@@ -142,7 +121,7 @@ export default async function HomePage() {
 
       {/* Pricing */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-lg">
           <div className="text-center mb-12">
             <h2
               className="font-bold text-black"
@@ -151,18 +130,15 @@ export default async function HomePage() {
               Simple, transparent pricing
             </h2>
           </div>
-          <div
-            className="bg-white rounded-[32px] border border-[#E5E7EB] overflow-hidden"
-            style={{ boxShadow: '0 20px 40px -12px rgba(0,0,0,0.05)' }}
-          >
-            <div className="bg-black px-8 py-8">
+          <div className="rounded-[32px] shadow-card border border-[#E5E7EB] overflow-hidden">
+            <div className="bg-green-600 px-8 py-8">
               <div className="flex items-baseline gap-3">
                 <span className="text-5xl font-bold text-white">Free</span>
                 <span className="text-white/60 text-sm font-medium">during beta</span>
               </div>
               <p className="mt-2 text-white/60 text-sm">Full access, no credit card required</p>
             </div>
-            <div className="px-8 py-8">
+            <div className="bg-white p-8">
               <ul className="space-y-4">
                 {[
                   'Up to 50 products',
@@ -173,7 +149,7 @@ export default async function HomePage() {
                   'Export to CSV',
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-black flex-shrink-0" />
+                    <Check className="h-5 w-5 text-green-600 flex-shrink-0" />
                     <span className="text-[#4B5563]">{feature}</span>
                   </li>
                 ))}
@@ -181,7 +157,7 @@ export default async function HomePage() {
               <div className="mt-8">
                 <Link
                   href="/signup"
-                  className="block w-full text-center rounded-full bg-black text-white px-8 py-4 font-semibold hover:opacity-90 transition-opacity"
+                  className="block w-full text-center rounded-full bg-green-600 hover:bg-green-700 text-white py-4 font-semibold transition-colors"
                 >
                   Get started free
                 </Link>
@@ -192,19 +168,20 @@ export default async function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-20 px-6">
-        <div className="mx-auto max-w-5xl">
-          <div
-            className="rounded-[32px] border border-white/10 p-10 md:p-12 flex flex-col sm:flex-row items-center justify-between gap-4"
-            style={{ background: 'rgba(0,0,0,0.95)' }}
-          >
-            <div className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-white" />
-              <span className="font-semibold text-white">Competitiel</span>
+      <footer className="bg-black text-white py-20 px-6">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row justify-between gap-8">
+            <div>
+              <div className="font-extrabold text-lg tracking-tight text-white mb-2">Competitiel</div>
+              <p className="text-white/40 text-sm">Track prices. Win on value.</p>
             </div>
-            <p className="text-sm text-white/40">
-              &copy; {new Date().getFullYear()} Competitiel. All rights reserved.
-            </p>
+            <div className="flex gap-8 text-sm text-white/60">
+              <Link href="/login" className="hover:text-white transition-colors">Sign in</Link>
+              <Link href="/signup" className="hover:text-white transition-colors">Get started</Link>
+            </div>
+          </div>
+          <div className="border-t border-white/10 mt-10 pt-8 text-sm text-white/40">
+            &copy; {new Date().getFullYear()} Competitiel. All rights reserved.
           </div>
         </div>
       </footer>
