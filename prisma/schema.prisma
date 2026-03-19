@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Profile {
+  id        String   @id @db.Uuid
+  email     String   @unique
+  fullName  String?  @map("full_name")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  products           Product[]
+  competitors        Competitor[]
+  priceAlerts        PriceAlert[]
+  analysisResults    AnalysisResult[]
+  competitorProducts CompetitorProduct[]
+
+  @@map("profiles")
+}
+
+model Product {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId       String   @map("user_id") @db.Uuid
+  name         String
+  description  String?
+  price        Decimal  @db.Decimal(10, 2)
+  costPrice    Decimal? @map("cost_price") @db.Decimal(10, 2)
+  targetMargin Decimal? @map("target_margin") @db.Decimal(5, 2)
+  category     String?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user         Profile       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productLinks ProductLink[]
+
+  @@map("products")
+}
+
+model Competitor {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  name       String
+  websiteUrl String?  @map("website_url")
+  platform   String?
+  notes      String?
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user               Profile             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competitorProducts CompetitorProduct[]
+  analysisResults    AnalysisResult[]
+
+  @@map("competitors")
+}
+
+model CompetitorProduct {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  competitorId  String    @map("competitor_id") @db.Uuid
+  userId        String    @map("user_id") @db.Uuid
+  name          String
+  url           String?
+  currentPrice  Decimal   @map("current_price") @db.Decimal(10, 2)
+  currency      String    @default("AUD")
+  lastScrapedAt DateTime? @map("last_scraped_at")
+  scrapeEnabled Boolean   @default(false) @map("scrape_enabled")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  competitor   Competitor     @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  user         Profile        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  priceHistory PriceHistory[]
+  productLinks ProductLink[]
+
+  @@map("competitor_products")
+}
+
+model PriceHistory {
+  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  competitorProductId String   @map("competitor_product_id") @db.Uuid
+  price               Decimal  @db.Decimal(10, 2)
+  currency            String   @default("AUD")
+  recordedAt          DateTime @default(now()) @map("recorded_at")
+  source              String   @default("manual")
+
+  competitorProduct CompetitorProduct @relation(fields: [competitorProductId], references: [id], onDelete: Cascade)
+
+  @@map("price_history")
+}
+
+model ProductLink {
+  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  productId           String   @map("product_id") @db.Uuid
+  competitorProductId String   @map("competitor_product_id") @db.Uuid
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  product           Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
+  competitorProduct CompetitorProduct @relation(fields: [competitorProductId], references: [id], onDelete: Cascade)
+  priceAlerts       PriceAlert[]
+
+  @@unique([productId, competitorProductId])
+  @@map("product_links")
+}
+
+model PriceAlert {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId        String    @map("user_id") @db.Uuid
+  productLinkId String?   @map("product_link_id") @db.Uuid
+  type          String
+  message       String
+  thresholdPct  Decimal?  @map("threshold_pct") @db.Decimal(5, 2)
+  dismissed     Boolean   @default(false)
+  actioned      Boolean   @default(false)
+  snoozedUntil  DateTime? @map("snoozed_until")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  user        Profile      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productLink ProductLink? @relation(fields: [productLinkId], references: [id], onDelete: SetNull)
+
+  @@map("price_alerts")
+}
+
+model AnalysisResult {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId       String   @map("user_id") @db.Uuid
+  competitorId String?  @map("competitor_id") @db.Uuid
+  analysis     Json
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  user       Profile     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competitor Competitor? @relation(fields: [competitorId], references: [id], onDelete: SetNull)
+
+  @@map("analysis_results")
+}
