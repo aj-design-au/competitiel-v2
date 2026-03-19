@@ -25,7 +25,7 @@ export default async function DashboardLayout({
     .single()
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-screen bg-[#F8F9FA]">
       {/* Sidebar - desktop */}
       <div className="hidden md:flex md:flex-shrink-0">
         <Sidebar />
@@ -34,7 +34,7 @@ export default async function DashboardLayout({
       {/* Main content */}
       <div className="flex flex-1 flex-col min-w-0 overflow-hidden">
         {/* Top nav */}
-        <div className="flex items-center gap-4 h-16 border-b border-border bg-white dark:bg-gray-950 px-4 md:px-6">
+        <div className="flex items-center gap-4 h-16 border-b border-[#E5E7EB] bg-white px-4 md:px-6">
           <MobileNav />
           <div className="flex-1" />
           <TopNav
@@ -44,7 +44,7 @@ export default async function DashboardLayout({
         </div>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto bg-[#F8F9FA] p-4 md:p-6 lg:p-8">
           {children}
         </main>
       </div>

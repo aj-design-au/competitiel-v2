@@ -59,9 +59,9 @@ export function SummaryCards({
       {cards.map((card) => {
         const Icon = card.icon
         return (
-          <Card key={card.title} className="bg-white dark:bg-gray-800">
+          <Card key={card.title} className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-soft p-6">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              <CardTitle className="text-sm font-medium text-[#9CA3AF]">
                 {card.title}
               </CardTitle>
               <div className={`rounded-lg p-2 ${card.bg}`}>
@@ -69,10 +69,10 @@ export function SummaryCards({
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="text-2xl font-bold text-black">
                 {card.value}
               </div>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-xs text-[#9CA3AF]">
                 {card.description}
               </p>
             </CardContent>

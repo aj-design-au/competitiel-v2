@@ -254,7 +254,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
   if (products.length === 0) {
     return (
       <div className="space-y-4">
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-[#9CA3AF]">
           <p className="text-sm mb-4">No products tracked yet.</p>
           <AddProductDialog competitorId={competitorId} userId={userId} onAdded={handleAdded} />
         </div>
@@ -289,11 +289,11 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
           return (
             <div
               key={product.id}
-              className="rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-4"
+              className="rounded-[24px] border border-[#E5E7EB] bg-[#F8F9FA] p-4"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-medium text-gray-900 dark:text-white truncate">{product.name}</h4>
+                  <h4 className="font-medium text-black truncate">{product.name}</h4>
                   {product.url && (
                     <a
                       href={product.url}
@@ -312,7 +312,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-7 w-7 text-gray-400 hover:text-blue-600"
+                      className="h-7 w-7 text-[#9CA3AF] hover:text-blue-600"
                       onClick={() => handleScrape(product)}
                       disabled={isScraping}
                       title="Scrape price (best effort)"
@@ -323,7 +323,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="h-7 w-7 text-gray-400 hover:text-orange-600"
+                    className="h-7 w-7 text-[#9CA3AF] hover:text-orange-600"
                     onClick={() => startEdit(product)}
                     title="Edit price"
                   >
@@ -332,7 +332,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="h-7 w-7 text-gray-400 hover:text-red-500"
+                    className="h-7 w-7 text-[#9CA3AF] hover:text-red-500"
                     onClick={() => handleDelete(product.id)}
                     disabled={isDeleting}
                     title="Delete"
@@ -365,11 +365,11 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                   </div>
                 ) : (
                   <div>
-                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                    <p className="text-lg font-bold text-black">
                       {formatCurrency(currentPrice, product.currency)}
                     </p>
                     <div className="flex items-center gap-2">
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-[#9CA3AF]">
                         Updated {formatDistanceToNow(new Date(product.updated_at), { addSuffix: true })}
                       </p>
                       {priceTrend !== null && (
@@ -396,7 +396,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
               </div>
 
               {sortedHistory.length > 0 && (
-                <p className="text-xs text-gray-400 mt-2">
+                <p className="text-xs text-[#9CA3AF] mt-2">
                   {sortedHistory.length} price {sortedHistory.length === 1 ? 'record' : 'records'} in history
                 </p>
               )}

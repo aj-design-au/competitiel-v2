@@ -22,8 +22,8 @@ export default async function ProductsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Products</h1>
-          <p className="text-sm text-gray-500 mt-1">Your product portfolio</p>
+          <h1 className="text-2xl font-bold text-black">Products</h1>
+          <p className="text-sm text-[#9CA3AF] mt-1">Your product portfolio</p>
         </div>
         <Link href="/products/new">
           <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
@@ -34,12 +34,12 @@ export default async function ProductsPage() {
       </div>
 
       {(!products || products.length === 0) ? (
-        <div className="rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 text-center">
-          <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+          <Package className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-black mb-2">
             No products yet
           </h3>
-          <p className="text-gray-500 mb-6 max-w-sm mx-auto">
+          <p className="text-[#9CA3AF] mb-6 max-w-sm mx-auto">
             Add your first product to start tracking it against competitors.
           </p>
           <Link href="/products/new">
@@ -61,11 +61,11 @@ export default async function ProductsPage() {
               : false
 
             return (
-              <Card key={product.id} className="bg-white dark:bg-gray-800 hover:shadow-md transition-shadow">
+              <Card key={product.id} className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-soft hover:shadow-md transition-shadow">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 dark:text-white truncate">
+                      <h3 className="font-semibold text-black truncate">
                         {product.name}
                       </h3>
                       {product.category && (
@@ -81,26 +81,26 @@ export default async function ProductsPage() {
 
                   <div className="space-y-1 text-sm mb-4">
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Selling price</span>
-                      <span className="font-semibold text-gray-900 dark:text-white">
+                      <span className="text-[#9CA3AF]">Selling price</span>
+                      <span className="font-semibold text-black">
                         {formatCurrency(Number(product.price))}
                       </span>
                     </div>
                     {product.cost_price && (
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Cost price</span>
-                        <span className="text-gray-700 dark:text-gray-300">
+                        <span className="text-[#9CA3AF]">Cost price</span>
+                        <span className="text-[#4B5563]">
                           {formatCurrency(Number(product.cost_price))}
                         </span>
                       </div>
                     )}
                     {margin && (
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Margin</span>
+                        <span className="text-[#9CA3AF]">Margin</span>
                         <span className={`font-medium ${marginBelowTarget ? 'text-red-600' : 'text-green-600'}`}>
                           {margin}%
                           {product.target_margin && (
-                            <span className="text-gray-400 font-normal text-xs ml-1">
+                            <span className="text-[#9CA3AF] font-normal text-xs ml-1">
                               (target: {product.target_margin}%)
                             </span>
                           )}
@@ -108,8 +108,8 @@ export default async function ProductsPage() {
                       </div>
                     )}
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Linked competitors</span>
-                      <span className="text-gray-700 dark:text-gray-300">{linkCount}</span>
+                      <span className="text-[#9CA3AF]">Linked competitors</span>
+                      <span className="text-[#4B5563]">{linkCount}</span>
                     </div>
                   </div>
 

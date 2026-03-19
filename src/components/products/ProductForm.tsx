@@ -113,7 +113,7 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
         <div className="space-y-2">
           <Label htmlFor="price">Your selling price *</Label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] text-sm">$</span>
             <Input
               id="price"
               type="number"
@@ -131,7 +131,7 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
         <div className="space-y-2">
           <Label htmlFor="cost_price">Cost price</Label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] text-sm">$</span>
             <Input
               id="cost_price"
               type="number"
@@ -148,16 +148,16 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
 
       {/* Calculated margin display */}
       {calculatedMargin && (
-        <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-4 text-sm">
+        <div className="rounded-[24px] bg-[#F8F9FA] border border-[#E5E7EB] p-4 text-sm">
           <div className="flex justify-between mb-1">
-            <span className="text-gray-600 dark:text-gray-400">Current margin:</span>
+            <span className="text-[#4B5563]">Current margin:</span>
             <span className={`font-semibold ${parseFloat(calculatedMargin) < 0 ? 'text-red-600' : 'text-green-600'}`}>
               {calculatedMargin}%
             </span>
           </div>
           {marginGap !== null && (
             <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">vs target:</span>
+              <span className="text-[#4B5563]">vs target:</span>
               <span className={`font-semibold ${parseFloat(marginGap) < 0 ? 'text-red-600' : 'text-green-600'}`}>
                 {parseFloat(marginGap) > 0 ? '+' : ''}{marginGap}%
               </span>
@@ -180,7 +180,7 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
               onChange={e => setForm(f => ({ ...f, target_margin: e.target.value }))}
               placeholder="e.g. 30"
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] text-sm">%</span>
           </div>
         </div>
 

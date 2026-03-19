@@ -35,7 +35,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
   }
 
   return (
-    <Card className="bg-white dark:bg-gray-800">
+    <Card className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-soft">
       <CardHeader
         className="cursor-pointer select-none"
         onClick={() => setExpanded(e => !e)}
@@ -55,7 +55,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
                 </Badge>
               )}
             </div>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-[#9CA3AF] mt-1">
               {formatDistanceToNow(new Date(analysis.createdAt), { addSuffix: true })}
             </p>
           </div>
@@ -65,7 +65,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
         </div>
 
         {/* Summary always visible */}
-        <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
+        <p className="text-sm text-[#4B5563] mt-2 leading-relaxed">
           {data.marketInsightsSummary}
         </p>
       </CardHeader>
@@ -77,16 +77,16 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Price Changes */}
           {data.changesDetected.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-black mb-3 flex items-center gap-2">
                 <BarChart2 className="h-4 w-4 text-blue-500" />
                 Price Changes Detected
               </h4>
               <div className="space-y-2">
                 {data.changesDetected.map((change, i) => (
-                  <div key={i} className="flex items-center justify-between text-sm p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-                    <span className="text-gray-700 dark:text-gray-300">{change.productName}</span>
+                  <div key={i} className="flex items-center justify-between text-sm p-2 rounded-xl bg-[#F8F9FA]">
+                    <span className="text-[#4B5563]">{change.productName}</span>
                     <div className="flex items-center gap-3">
-                      <span className="text-gray-500 line-through">
+                      <span className="text-[#9CA3AF] line-through">
                         ${change.previousPrice.toFixed(2)}
                       </span>
                       <span className="font-semibold">${change.currentPrice.toFixed(2)}</span>
@@ -106,22 +106,22 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
 
           {/* Reasoning */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
               <Lightbulb className="h-4 w-4 text-yellow-500" />
               Why Prices Likely Changed
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-sm text-[#4B5563] leading-relaxed">
               {data.reasoningForChanges}
             </p>
           </div>
 
           {/* Your Position */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-orange-500" />
               Your Competitive Position
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-sm text-[#4B5563] leading-relaxed">
               {data.yourCompetitivePosition}
             </p>
           </div>
@@ -129,15 +129,15 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Recommendations */}
           {data.recommendedAdjustments.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-black mb-3 flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-green-500" />
                 Recommended Adjustments
               </h4>
               <div className="space-y-3">
                 {data.recommendedAdjustments.map((rec, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <div key={i} className="p-3 rounded-[24px] border border-[#E5E7EB]">
                     <div className="flex items-start justify-between gap-2 mb-1">
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                      <span className="text-sm font-medium text-black">
                         {rec.yourProductName}
                       </span>
                       <Badge
@@ -148,11 +148,11 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
                       </Badge>
                     </div>
                     <div className="flex items-center gap-2 text-sm mb-2">
-                      <span className="text-gray-500">Current: ${rec.currentYourPrice.toFixed(2)}</span>
-                      <span className="text-gray-400">→</span>
+                      <span className="text-[#9CA3AF]">Current: ${rec.currentYourPrice.toFixed(2)}</span>
+                      <span className="text-[#9CA3AF]">→</span>
                       <span className="font-semibold text-green-600">${rec.recommendedPrice.toFixed(2)}</span>
                     </div>
-                    <p className="text-xs text-gray-500 leading-relaxed">{rec.reasoning}</p>
+                    <p className="text-xs text-[#9CA3AF] leading-relaxed">{rec.reasoning}</p>
                   </div>
                 ))}
               </div>
@@ -162,12 +162,12 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Patterns */}
           {data.patternsDetected.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+              <h4 className="text-sm font-semibold text-black mb-2">
                 Patterns Detected
               </h4>
               <ul className="space-y-1.5">
                 {data.patternsDetected.map((pattern, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li key={i} className="flex items-start gap-2 text-sm text-[#4B5563]">
                     <span className="text-green-500 mt-0.5">•</span>
                     {pattern}
                   </li>

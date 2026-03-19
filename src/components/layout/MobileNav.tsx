@@ -31,14 +31,14 @@ export function MobileNav() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+      <SheetTrigger className="md:hidden inline-flex items-center justify-center text-[#4B5563] hover:bg-[#F3F4F6] hover:text-black rounded-xl p-2">
         <Menu className="h-5 w-5" />
         <span className="sr-only">Open menu</span>
       </SheetTrigger>
-      <SheetContent side="left" className="w-64 p-0">
-        <div className="flex h-16 items-center gap-2 border-b px-6">
+      <SheetContent side="left" className="w-64 p-0 bg-white border-r border-[#E5E7EB]">
+        <div className="h-16 border-b border-[#E5E7EB] px-6 flex items-center gap-2">
           <TrendingUp className="h-6 w-6 text-green-600" />
-          <span className="text-lg font-bold">Competitiel</span>
+          <span className="text-lg font-bold text-black">Competitiel</span>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-4">
           {navItems.map((item) => {
@@ -53,10 +53,10 @@ export function MobileNav() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                  'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
                     ? 'bg-green-50 text-green-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    : 'text-[#4B5563] hover:bg-[#F3F4F6] hover:text-black'
                 )}
               >
                 <Icon className="h-4 w-4 flex-shrink-0" />

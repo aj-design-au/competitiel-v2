@@ -93,8 +93,8 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <h1 className="text-2xl font-bold text-black">Dashboard</h1>
+          <p className="text-sm text-[#9CA3AF] mt-1">
             Your competitive pricing overview
           </p>
         </div>
@@ -133,8 +133,8 @@ export default function DashboardPage() {
         <Card className="border-dashed border-2 border-green-200 bg-green-50/30">
           <CardContent className="py-12 text-center">
             <div className="text-5xl mb-4">🚀</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Get started in 3 steps</h2>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
+            <h2 className="text-xl font-bold text-black mb-2">Get started in 3 steps</h2>
+            <p className="text-[#4B5563] mb-6 max-w-md mx-auto">
               Set up your competitive intelligence dashboard by following these steps.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -176,7 +176,7 @@ export default function DashboardPage() {
               onPriceUpdate={handlePriceUpdate}
             />
             {data.comparisonRows.length === 0 && data.summary.totalProducts > 0 && (
-              <div className="mt-4 text-center text-gray-500 text-sm">
+              <div className="mt-4 text-center text-[#9CA3AF] text-sm">
                 <p>You have products but no linked competitors.</p>
                 <Link href="/products" className="text-green-600 hover:underline">
                   Go to Products

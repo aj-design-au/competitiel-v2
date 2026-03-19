@@ -40,8 +40,7 @@ export function TopNav({ userEmail, userName }: TopNavProps) {
     : userEmail?.charAt(0).toUpperCase() ?? 'U'
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-border bg-white px-6 dark:bg-gray-950">
-      <div />
+    <div className="flex items-center">
       <DropdownMenu>
         <DropdownMenuTrigger className="rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
           <Avatar className="h-9 w-9 cursor-pointer">
@@ -73,6 +72,6 @@ export function TopNav({ userEmail, userName }: TopNavProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </header>
+    </div>
   )
 }

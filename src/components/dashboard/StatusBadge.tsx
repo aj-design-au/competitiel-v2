@@ -9,26 +9,23 @@ export function StatusBadge({ status }: StatusBadgeProps) {
   const config = {
     Underpriced: {
       label: 'Underpriced',
-      className: 'bg-red-100 text-red-700 border-red-200 hover:bg-red-100',
-      emoji: '🔴',
+      className: 'bg-green-50 text-green-700',
     },
     Competitive: {
       label: 'Competitive',
-      className: 'bg-yellow-100 text-yellow-700 border-yellow-200 hover:bg-yellow-100',
-      emoji: '🟡',
+      className: 'bg-[#F3F4F6] text-[#4B5563]',
     },
     Premium: {
       label: 'Premium',
-      className: 'bg-green-100 text-green-700 border-green-200 hover:bg-green-100',
-      emoji: '🟢',
+      className: 'bg-red-50 text-red-600',
     },
   }
 
-  const { label, className, emoji } = config[status]
+  const { label, className } = config[status]
 
   return (
-    <Badge variant="outline" className={`font-medium text-xs ${className}`}>
-      {emoji} {label}
-    </Badge>
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${className}`}>
+      {label}
+    </span>
   )
 }

@@ -21,8 +21,8 @@ export default async function CompetitorsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Competitors</h1>
-          <p className="text-sm text-gray-500 mt-1">Track competitors and their pricing</p>
+          <h1 className="text-2xl font-bold text-black">Competitors</h1>
+          <p className="text-sm text-[#9CA3AF] mt-1">Track competitors and their pricing</p>
         </div>
         <Link href="/competitors/new">
           <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
@@ -33,12 +33,12 @@ export default async function CompetitorsPage() {
       </div>
 
       {(!competitors || competitors.length === 0) ? (
-        <div className="rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 text-center">
-          <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+          <Users className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-black mb-2">
             No competitors yet
           </h3>
-          <p className="text-gray-500 mb-6 max-w-sm mx-auto">
+          <p className="text-[#9CA3AF] mb-6 max-w-sm mx-auto">
             Add your first competitor to start tracking their prices.
           </p>
           <Link href="/competitors/new">
@@ -53,11 +53,11 @@ export default async function CompetitorsPage() {
           {competitors.map((competitor) => {
             const productCount = (competitor.competitor_products as Array<{ count: number }>)[0]?.count ?? 0
             return (
-              <Card key={competitor.id} className="bg-white dark:bg-gray-800 hover:shadow-md transition-shadow">
+              <Card key={competitor.id} className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-soft hover:shadow-md transition-shadow">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 dark:text-white truncate">
+                      <h3 className="font-semibold text-black truncate">
                         {competitor.name}
                       </h3>
                       {competitor.platform && (
@@ -83,14 +83,14 @@ export default async function CompetitorsPage() {
                         {competitor.website_url.replace(/^https?:\/\//, '')}
                       </a>
                     )}
-                    <div className="flex justify-between text-gray-500">
+                    <div className="flex justify-between text-[#9CA3AF]">
                       <span>Tracked products</span>
-                      <span className="font-medium text-gray-900 dark:text-white">{productCount}</span>
+                      <span className="font-medium text-black">{productCount}</span>
                     </div>
                   </div>
 
                   {competitor.notes && (
-                    <p className="text-xs text-gray-500 mb-4 line-clamp-2">{competitor.notes}</p>
+                    <p className="text-xs text-[#9CA3AF] mb-4 line-clamp-2">{competitor.notes}</p>
                   )}
 
                   <Link href={`/competitors/${competitor.id}`}>

@@ -170,12 +170,12 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-12 text-center">
+      <div className="rounded-[24px] border border-dashed border-[#E5E7EB] bg-white p-12 text-center">
         <div className="text-4xl mb-3">📊</div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-lg font-semibold text-black mb-2">
           No price comparisons yet
         </h3>
-        <p className="text-gray-500 dark:text-gray-400 max-w-sm mx-auto">
+        <p className="text-[#9CA3AF] max-w-sm mx-auto">
           Add your products and competitors, then link them together to see price comparisons here.
         </p>
       </div>
@@ -242,10 +242,10 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-x-auto">
+      <div className="bg-white rounded-[24px] border border-[#E5E7EB] shadow-soft overflow-x-auto overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50 dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-900">
+            <TableRow className="bg-[#F8F9FA] hover:bg-[#F8F9FA]">
               <TableHead
                 className="cursor-pointer whitespace-nowrap font-semibold"
                 onClick={() => handleSort('yourProduct')}
@@ -303,37 +303,37 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
             {sorted.map((row) => {
               const isEditing = editingId === row.competitorProduct.id
               const isSaving = savingId === row.competitorProduct.id
-              const diffColor = row.priceDiff > 0 ? 'text-green-600' : row.priceDiff < 0 ? 'text-red-600' : 'text-gray-500'
+              const diffColor = row.priceDiff > 0 ? 'text-green-600' : row.priceDiff < 0 ? 'text-red-600' : 'text-[#9CA3AF]'
 
               return (
                 <TableRow
                   key={row.productLinkId}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  className="border-b border-[#F3F4F6] hover:bg-[#F8F9FA] transition-colors"
                 >
                   {/* Your Product */}
                   <TableCell>
                     <div>
-                      <div className="font-medium text-gray-900 dark:text-white">
+                      <div className="font-medium text-black">
                         {row.yourProduct.name}
                       </div>
                       {row.yourProduct.category && (
-                        <div className="text-xs text-gray-500 mt-0.5">{row.yourProduct.category}</div>
+                        <div className="text-xs text-[#9CA3AF] mt-0.5">{row.yourProduct.category}</div>
                       )}
                     </div>
                   </TableCell>
 
                   {/* Your Price */}
-                  <TableCell className="text-right font-semibold">
+                  <TableCell className="text-right font-semibold text-black">
                     {formatCurrency(row.yourProduct.price)}
                   </TableCell>
 
                   {/* Competitor */}
                   <TableCell>
                     <div>
-                      <div className="font-medium text-gray-900 dark:text-white">
+                      <div className="font-medium text-black">
                         {row.competitor.name}
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">
+                      <div className="text-xs text-[#9CA3AF] mt-0.5">
                         {row.competitorProduct.name}
                       </div>
                     </div>
@@ -380,7 +380,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                           <div className="font-semibold">
                             {formatCurrency(row.competitorProduct.price, row.competitorProduct.currency)}
                           </div>
-                          <div className="text-xs text-gray-400">
+                          <div className="text-xs text-[#9CA3AF]">
                             {formatDistanceToNow(new Date(row.competitorProduct.updatedAt), { addSuffix: true })}
                           </div>
                         </div>
@@ -426,18 +426,18 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                         className={
                           row.yourProduct.targetMargin && row.yourMargin < row.yourProduct.targetMargin
                             ? 'text-red-600 font-medium'
-                            : 'text-gray-700 dark:text-gray-300'
+                            : 'text-[#4B5563]'
                         }
                       >
                         {row.yourMargin.toFixed(1)}%
                         {row.yourProduct.targetMargin && (
-                          <span className="text-xs text-gray-400 ml-1">
+                          <span className="text-xs text-[#9CA3AF] ml-1">
                             (target: {row.yourProduct.targetMargin}%)
                           </span>
                         )}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-sm">N/A</span>
+                      <span className="text-[#9CA3AF] text-sm">N/A</span>
                     )}
                   </TableCell>
 

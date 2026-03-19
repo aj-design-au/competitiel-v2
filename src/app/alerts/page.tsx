@@ -101,8 +101,8 @@ export default function AlertsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Price Alerts</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <h1 className="text-2xl font-bold text-black">Price Alerts</h1>
+          <p className="text-sm text-[#9CA3AF] mt-1">
             {activeAlerts.length} active {activeAlerts.length === 1 ? 'alert' : 'alerts'}
           </p>
         </div>
@@ -124,12 +124,12 @@ export default function AlertsPage() {
       </div>
 
       {alerts.length === 0 ? (
-        <div className="rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 text-center">
-          <Bell className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+          <Bell className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-black mb-2">
             {showDismissed ? 'No alerts found' : 'No active alerts'}
           </h3>
-          <p className="text-gray-500 max-w-sm mx-auto">
+          <p className="text-[#9CA3AF] max-w-sm mx-auto">
             {showDismissed
               ? 'No alerts in history.'
               : "You're all caught up! Alerts appear when competitor prices change significantly or your margins drop."}
@@ -150,13 +150,13 @@ export default function AlertsPage() {
               return (
                 <div
                   key={alert.id}
-                  className={`flex items-start gap-3 p-4 rounded-lg border transition-opacity ${
+                  className={`flex items-start gap-3 p-4 rounded-[24px] border transition-opacity ${
                     isActive
-                      ? 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'
-                      : 'border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 opacity-60'
+                      ? 'border-[#E5E7EB] bg-white'
+                      : 'border-[#F3F4F6] bg-[#F8F9FA] opacity-60'
                   }`}
                 >
-                  <Bell className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isActive ? 'text-orange-500' : 'text-gray-400'}`} />
+                  <Bell className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isActive ? 'text-orange-500' : 'text-[#9CA3AF]'}`} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <Badge className={`text-xs border ${type.color}`}>
@@ -172,14 +172,14 @@ export default function AlertsPage() {
                           Dismissed
                         </Badge>
                       )}
-                      <span className="text-xs text-gray-400 ml-auto">
+                      <span className="text-xs text-[#9CA3AF] ml-auto">
                         {formatDistanceToNow(new Date(alert.created_at), { addSuffix: true })}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">{alert.message}</p>
+                    <p className="text-sm text-[#4B5563]">{alert.message}</p>
 
                     {alert.product_links && (
-                      <div className="mt-1 text-xs text-gray-400">
+                      <div className="mt-1 text-xs text-[#9CA3AF]">
                         {alert.product_links.products.name} vs{' '}
                         {alert.product_links.competitor_products.competitors.name} —{' '}
                         {alert.product_links.competitor_products.name}
@@ -201,7 +201,7 @@ export default function AlertsPage() {
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 text-gray-400 hover:text-gray-600"
+                        className="h-7 w-7 text-[#9CA3AF] hover:text-[#4B5563]"
                         onClick={() => snoozeAlert(alert.id)}
                         title="Snooze 24h"
                       >
@@ -210,7 +210,7 @@ export default function AlertsPage() {
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 text-gray-400 hover:text-red-500"
+                        className="h-7 w-7 text-[#9CA3AF] hover:text-red-500"
                         onClick={() => dismissAlert(alert.id)}
                         title="Dismiss"
                       >

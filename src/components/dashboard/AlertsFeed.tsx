@@ -58,7 +58,7 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
 
   if (alerts.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+      <div className="text-center py-8 text-[#9CA3AF]">
         <Bell className="h-8 w-8 mx-auto mb-2 opacity-40" />
         <p className="text-sm">No active alerts. You&apos;re all caught up!</p>
       </div>
@@ -68,21 +68,21 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
   return (
     <div className="space-y-3">
       {alerts.map((alert) => {
-        const type = typeConfig[alert.type as keyof typeof typeConfig] ?? { label: alert.type, color: 'bg-gray-100 text-gray-700' }
+        const type = typeConfig[alert.type as keyof typeof typeConfig] ?? { label: alert.type, color: 'bg-[#F3F4F6] text-[#4B5563]' }
         return (
           <div
             key={alert.id}
-            className="flex items-start gap-3 p-3 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
+            className="flex items-start gap-3 border-b border-[#F3F4F6] px-4 py-3"
           >
             <Bell className="h-4 w-4 text-orange-500 mt-0.5 flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <Badge className={`text-xs ${type.color}`}>{type.label}</Badge>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-[#9CA3AF]">
                   {formatDistanceToNow(new Date(alert.createdAt), { addSuffix: true })}
                 </span>
               </div>
-              <p className="text-sm text-gray-700 dark:text-gray-300">{alert.message}</p>
+              <p className="text-sm text-[#4B5563]">{alert.message}</p>
             </div>
             <div className="flex items-center gap-1 flex-shrink-0">
               <Button
@@ -97,7 +97,7 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-7 w-7 text-gray-400 hover:text-gray-600"
+                className="h-7 w-7 text-[#9CA3AF] hover:text-[#4B5563]"
                 onClick={() => snoozeAlert(alert.id)}
                 title="Snooze 24h"
               >
@@ -106,7 +106,7 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-7 w-7 text-gray-400 hover:text-red-500"
+                className="h-7 w-7 text-[#9CA3AF] hover:text-red-500"
                 onClick={() => dismissAlert(alert.id)}
                 title="Dismiss"
               >

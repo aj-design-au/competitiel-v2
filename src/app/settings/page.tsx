@@ -75,8 +75,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Settings</h1>
-        <p className="text-sm text-gray-500 mt-1">Manage your account and preferences</p>
+        <h1 className="text-2xl font-bold text-black">Settings</h1>
+        <p className="text-sm text-[#9CA3AF] mt-1">Manage your account and preferences</p>
       </div>
 
       {/* Profile */}
@@ -105,9 +105,9 @@ export default function SettingsPage() {
                 id="email"
                 value={profile?.email ?? ''}
                 disabled
-                className="bg-gray-50 dark:bg-gray-800"
+                className="bg-[#F8F9FA]"
               />
-              <p className="text-xs text-gray-500">Email cannot be changed here.</p>
+              <p className="text-xs text-[#9CA3AF]">Email cannot be changed here.</p>
             </div>
             <Button
               type="submit"
@@ -136,10 +136,10 @@ export default function SettingsPage() {
           <CardDescription>Configure Gemini AI for price analysis</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-4 rounded-[24px] border border-[#E5E7EB]">
             <div>
-              <p className="text-sm font-medium">Gemini API Key</p>
-              <p className="text-xs text-gray-500 mt-0.5">Required for AI insights</p>
+              <p className="text-sm font-medium text-black">Gemini API Key</p>
+              <p className="text-xs text-[#9CA3AF] mt-0.5">Required for AI insights</p>
             </div>
             <Badge
               variant="outline"
@@ -156,7 +156,7 @@ export default function SettingsPage() {
                 <p className="font-medium mb-1">To enable AI insights:</p>
                 <ol className="list-decimal list-inside space-y-1 text-sm">
                   <li>Get a free API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">Google AI Studio</a></li>
-                  <li>Add <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs font-mono">GEMINI_API_KEY=your-key</code> to your environment variables</li>
+                  <li>Add <code className="bg-[#F3F4F6] px-1 py-0.5 rounded text-xs font-mono">GEMINI_API_KEY=your-key</code> to your environment variables</li>
                   <li>Redeploy the application</li>
                 </ol>
               </AlertDescription>
@@ -178,10 +178,10 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-3 rounded-[24px] border border-[#E5E7EB]">
               <div>
-                <p className="text-sm font-medium">Price change threshold</p>
-                <p className="text-xs text-gray-500">Alert when competitor price changes by more than this %</p>
+                <p className="text-sm font-medium text-black">Price change threshold</p>
+                <p className="text-xs text-[#9CA3AF]">Alert when competitor price changes by more than this %</p>
               </div>
               <div className="flex items-center gap-2">
                 <Input
@@ -191,20 +191,20 @@ export default function SettingsPage() {
                   defaultValue="5"
                   className="w-20 text-right"
                 />
-                <span className="text-sm text-gray-500">%</span>
+                <span className="text-sm text-[#9CA3AF]">%</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-3 rounded-[24px] border border-[#E5E7EB]">
               <div>
-                <p className="text-sm font-medium">Margin warning</p>
-                <p className="text-xs text-gray-500">Alert when your margin drops below target</p>
+                <p className="text-sm font-medium text-black">Margin warning</p>
+                <p className="text-xs text-[#9CA3AF]">Alert when your margin drops below target</p>
               </div>
               <Badge variant="outline" className="text-green-600 border-green-200">Active</Badge>
             </div>
           </div>
 
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-[#9CA3AF]">
             Note: Alert threshold settings will be saved per-account in a future update.
           </p>
         </CardContent>
@@ -213,12 +213,12 @@ export default function SettingsPage() {
       <Separator />
 
       {/* Danger zone */}
-      <Card className="border-red-200 dark:border-red-800">
+      <Card className="border-red-200">
         <CardHeader>
           <CardTitle className="text-base text-red-600">Account</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-sm text-[#4B5563] mb-4">
             Permanently delete your account and all data.
           </p>
           <Button variant="outline" className="border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300">

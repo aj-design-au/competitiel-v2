@@ -50,13 +50,13 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/products" className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4">
+        <Link href="/products" className="flex items-center gap-1 text-sm text-[#9CA3AF] hover:text-[#4B5563] mb-4">
           <ChevronLeft className="h-4 w-4" />
           Back to Products
         </Link>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{product.name}</h1>
+            <h1 className="text-2xl font-bold text-black">{product.name}</h1>
             {product.category && (
               <Badge variant="secondary" className="mt-1">{product.category}</Badge>
             )}
@@ -79,23 +79,23 @@ export default async function ProductDetailPage({ params }: Props) {
           <CardContent className="space-y-3 text-sm">
             {product.description && (
               <>
-                <p className="text-gray-600 dark:text-gray-400">{product.description}</p>
+                <p className="text-[#4B5563]">{product.description}</p>
                 <Separator />
               </>
             )}
             <div className="flex justify-between">
-              <span className="text-gray-500">Selling price</span>
-              <span className="font-semibold">{formatCurrency(Number(product.price))}</span>
+              <span className="text-[#9CA3AF]">Selling price</span>
+              <span className="font-semibold text-black">{formatCurrency(Number(product.price))}</span>
             </div>
             {product.cost_price && (
               <div className="flex justify-between">
-                <span className="text-gray-500">Cost price</span>
-                <span>{formatCurrency(Number(product.cost_price))}</span>
+                <span className="text-[#9CA3AF]">Cost price</span>
+                <span className="text-[#4B5563]">{formatCurrency(Number(product.cost_price))}</span>
               </div>
             )}
             {margin && (
               <div className="flex justify-between">
-                <span className="text-gray-500">Current margin</span>
+                <span className="text-[#9CA3AF]">Current margin</span>
                 <span className={`font-semibold ${
                   product.target_margin && parseFloat(margin) < product.target_margin
                     ? 'text-red-600'
@@ -107,12 +107,12 @@ export default async function ProductDetailPage({ params }: Props) {
             )}
             {product.target_margin && (
               <div className="flex justify-between">
-                <span className="text-gray-500">Target margin</span>
-                <span>{product.target_margin}%</span>
+                <span className="text-[#9CA3AF]">Target margin</span>
+                <span className="text-[#4B5563]">{product.target_margin}%</span>
               </div>
             )}
             <div className="flex justify-between">
-              <span className="text-gray-500">Status</span>
+              <span className="text-[#9CA3AF]">Status</span>
               <Badge variant={product.active ? 'default' : 'secondary'}>
                 {product.active ? 'Active' : 'Inactive'}
               </Badge>

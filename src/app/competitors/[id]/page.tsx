@@ -34,13 +34,13 @@ export default async function CompetitorDetailPage({ params }: Props) {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/competitors" className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4">
+        <Link href="/competitors" className="flex items-center gap-1 text-sm text-[#9CA3AF] hover:text-[#4B5563] mb-4">
           <ChevronLeft className="h-4 w-4" />
           Back to Competitors
         </Link>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{competitor.name}</h1>
+            <h1 className="text-2xl font-bold text-black">{competitor.name}</h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
               {competitor.platform && (
                 <Badge variant="secondary">{competitor.platform}</Badge>
@@ -68,7 +68,7 @@ export default async function CompetitorDetailPage({ params }: Props) {
           <CardContent className="space-y-3 text-sm">
             {competitor.website_url && (
               <div>
-                <p className="text-gray-500 mb-1">Website</p>
+                <p className="text-[#9CA3AF] mb-1">Website</p>
                 <a
                   href={competitor.website_url}
                   target="_blank"
@@ -82,13 +82,13 @@ export default async function CompetitorDetailPage({ params }: Props) {
             )}
             {competitor.notes && (
               <div>
-                <p className="text-gray-500 mb-1">Notes</p>
-                <p className="text-gray-700 dark:text-gray-300">{competitor.notes}</p>
+                <p className="text-[#9CA3AF] mb-1">Notes</p>
+                <p className="text-[#4B5563]">{competitor.notes}</p>
               </div>
             )}
             <div>
-              <p className="text-gray-500 mb-1">Products tracked</p>
-              <p className="font-semibold">{competitor.competitor_products?.length ?? 0}</p>
+              <p className="text-[#9CA3AF] mb-1">Products tracked</p>
+              <p className="font-semibold text-black">{competitor.competitor_products?.length ?? 0}</p>
             </div>
           </CardContent>
         </Card>

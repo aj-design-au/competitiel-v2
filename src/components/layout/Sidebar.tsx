@@ -26,11 +26,11 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-64 flex-col border-r border-border bg-white dark:bg-gray-950">
+    <div className="bg-white border-r border-[#E5E7EB] w-64 flex flex-col h-full">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-2 border-b border-border px-6">
+      <div className="h-16 border-b border-[#E5E7EB] px-6 flex items-center gap-2">
         <TrendingUp className="h-6 w-6 text-green-600" />
-        <span className="text-lg font-bold text-gray-900 dark:text-white">
+        <span className="text-lg font-bold text-black">
           Competitiel
         </span>
       </div>
@@ -49,10 +49,10 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'
+                  ? 'bg-green-50 text-green-700 rounded-xl'
+                  : 'text-[#4B5563] hover:bg-[#F3F4F6] hover:text-black'
               )}
             >
               <Icon className="h-4 w-4 flex-shrink-0" />
@@ -63,8 +63,8 @@ export function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-border p-4">
-        <p className="text-xs text-gray-500">Competitive Pricing Intelligence</p>
+      <div className="border-t border-[#E5E7EB] p-4">
+        <p className="text-xs text-[#9CA3AF]">Competitive Pricing Intelligence</p>
       </div>
     </div>
   )

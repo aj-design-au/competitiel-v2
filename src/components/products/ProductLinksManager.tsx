@@ -110,7 +110,7 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
   return (
     <div className="space-y-4">
       {links.length === 0 ? (
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm text-[#9CA3AF]">
           No competitor products linked yet.
         </p>
       ) : (
@@ -118,7 +118,7 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
           {links.map((link) => (
             <div
               key={link.id}
-              className="flex items-center justify-between p-3 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
+              className="flex items-center justify-between p-3 rounded-[24px] border border-[#E5E7EB] bg-[#F8F9FA]"
             >
               <div className="min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
@@ -126,10 +126,10 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
                     {link.competitor_products.competitors.name}
                   </Badge>
                 </div>
-                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                <p className="text-sm font-medium text-black truncate">
                   {link.competitor_products.name}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-[#9CA3AF]">
                   {formatCurrency(Number(link.competitor_products.current_price), link.competitor_products.currency)}
                   {' · '}
                   {formatDistanceToNow(new Date(link.competitor_products.updated_at), { addSuffix: true })}
@@ -138,7 +138,7 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7 text-gray-400 hover:text-red-500 flex-shrink-0"
+                className="h-7 w-7 text-[#9CA3AF] hover:text-red-500 flex-shrink-0"
                 onClick={() => handleDelete(link.id)}
                 disabled={deletingId === link.id}
               >
@@ -184,7 +184,7 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
       )}
 
       {availableCPs.length === 0 && (
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-[#9CA3AF]">
           All competitor products are already linked, or add competitor products first.
         </p>
       )}

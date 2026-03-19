@@ -75,8 +75,8 @@ export default function InsightsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">AI Insights</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <h1 className="text-2xl font-bold text-black">AI Insights</h1>
+          <p className="text-sm text-[#9CA3AF] mt-1">
             Powered by Google Gemini 2.0 Flash
           </p>
         </div>
@@ -108,12 +108,12 @@ export default function InsightsPage() {
       )}
 
       {analyses.length === 0 ? (
-        <div className="rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 text-center">
-          <Sparkles className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+          <Sparkles className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-black mb-2">
             No analyses yet
           </h3>
-          <p className="text-gray-500 mb-2 max-w-sm mx-auto">
+          <p className="text-[#9CA3AF] mb-2 max-w-sm mx-auto">
             Run your first AI analysis to get pricing insights and recommendations.
           </p>
           {competitors.length > 0 && (
