@@ -42,9 +42,9 @@ export function TopNav({ userEmail, userName }: TopNavProps) {
   return (
     <div className="flex items-center">
       <DropdownMenu>
-        <DropdownMenuTrigger className="rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+        <DropdownMenuTrigger className="rounded-full focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2">
           <Avatar className="h-9 w-9 cursor-pointer">
-            <AvatarFallback className="bg-green-100 text-green-700 text-sm font-semibold">
+            <AvatarFallback className="bg-[#F3F4F6] text-black text-sm font-semibold">
               {initials}
             </AvatarFallback>
           </Avatar>

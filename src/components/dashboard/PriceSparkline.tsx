@@ -16,7 +16,7 @@ interface PriceSparklineProps {
 export function PriceSparkline({ data, currentPrice, color = '#16A34A' }: PriceSparklineProps) {
   if (!data || data.length < 2) {
     return (
-      <div className="flex items-center justify-center h-10 w-24 text-xs text-gray-400">
+      <div className="flex items-center justify-center h-10 w-24 text-xs text-[#9CA3AF]">
         No history
       </div>
     )

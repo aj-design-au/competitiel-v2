@@ -312,7 +312,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-7 w-7 text-[#9CA3AF] hover:text-blue-600"
+                      className="h-7 w-7 text-[#9CA3AF] hover:text-black"
                       onClick={() => handleScrape(product)}
                       disabled={isScraping}
                       title="Scrape price (best effort)"
@@ -323,7 +323,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="h-7 w-7 text-[#9CA3AF] hover:text-orange-600"
+                    className="h-7 w-7 text-[#9CA3AF] hover:text-red-600"
                     onClick={() => startEdit(product)}
                     title="Edit price"
                   >

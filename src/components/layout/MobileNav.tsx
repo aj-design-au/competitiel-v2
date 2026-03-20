@@ -37,7 +37,7 @@ export function MobileNav() {
       </SheetTrigger>
       <SheetContent side="left" className="w-64 p-0 bg-white border-r border-[#E5E7EB]">
         <div className="h-16 border-b border-[#E5E7EB] px-6 flex items-center gap-2">
-          <TrendingUp className="h-6 w-6 text-green-600" />
+          <TrendingUp className="h-6 w-6 text-black" />
           <span className="text-lg font-bold text-black">Competitiel</span>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-4">
@@ -55,7 +55,7 @@ export function MobileNav() {
                 className={cn(
                   'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-green-50 text-green-700'
+                    ? 'bg-[#F3F4F6] text-black font-semibold'
                     : 'text-[#4B5563] hover:bg-[#F3F4F6] hover:text-black'
                 )}
               >

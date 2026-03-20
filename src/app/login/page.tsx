@@ -54,7 +54,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
-                className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-green-600 transition-colors"
+                className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-black transition-colors"
               />
             </div>
 
@@ -78,14 +78,14 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="current-password"
-                className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-green-600 transition-colors"
+                className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-black transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="rounded-full bg-green-600 hover:bg-green-700 text-white w-full py-3.5 font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-60 mt-2"
+              className="rounded-full bg-black hover:opacity-90 text-white w-full py-3.5 font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
             >
               {loading ? (
                 <>
@@ -100,7 +100,7 @@ export default function LoginPage() {
 
           <p className="mt-6 text-center text-sm text-[#4B5563]">
             Don&apos;t have an account?{' '}
-            <Link href="/signup" className="font-medium text-green-600 hover:text-green-700 transition-colors">
+            <Link href="/signup" className="font-medium text-black underline underline-offset-2 hover:opacity-70 transition-opacity">
               Sign up free
             </Link>
           </p>

@@ -40,14 +40,14 @@ export default function ForgotPasswordPage() {
         <div className="bg-white rounded-[32px] border border-[#E5E7EB] shadow-card p-8 md:p-10">
           {sent ? (
             <div className="text-center">
-              <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <CheckCircle className="h-12 w-12 text-black mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-black mb-2">Check your email</h2>
               <p className="text-[#4B5563] mb-6">
                 We sent a password reset link to <strong>{email}</strong>
               </p>
               <Link
                 href="/login"
-                className="block w-full text-center rounded-full bg-green-600 hover:bg-green-700 text-white py-3.5 font-semibold transition-colors"
+                className="block w-full text-center rounded-full bg-black hover:opacity-90 text-white py-3.5 font-semibold transition-all"
               >
                 Back to sign in
               </Link>
@@ -71,14 +71,14 @@ export default function ForgotPasswordPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-green-600 transition-colors"
+                    className="rounded-2xl border border-[#E5E7EB] bg-[#F3F4F6] px-4 py-3 text-sm w-full focus:outline-none focus:border-black transition-colors"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="rounded-full bg-green-600 hover:bg-green-700 text-white w-full py-3.5 font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="rounded-full bg-black hover:opacity-90 text-white w-full py-3.5 font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -93,7 +93,7 @@ export default function ForgotPasswordPage() {
 
               <p className="mt-6 text-center text-sm text-[#4B5563]">
                 Remember your password?{' '}
-                <Link href="/login" className="font-medium text-green-600 hover:text-green-700 transition-colors">
+                <Link href="/login" className="font-medium text-black underline underline-offset-2 hover:opacity-70 transition-opacity">
                   Sign in
                 </Link>
               </p>

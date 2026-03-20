@@ -110,7 +110,7 @@ export default function DashboardPage() {
             Refresh
           </Button>
           <Link href="/insights">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white gap-2">
+            <Button size="sm" className="bg-black hover:opacity-90 text-white gap-2">
               <Sparkles className="h-4 w-4" />
               Run AI Analysis
             </Button>
@@ -130,7 +130,7 @@ export default function DashboardPage() {
 
       {/* Onboarding prompt */}
       {!hasData && (
-        <Card className="border-dashed border-2 border-green-200 bg-green-50/30">
+        <Card className="border border-[#E5E7EB] bg-[#F8F9FA]">
           <CardContent className="py-12 text-center">
             <div className="text-5xl mb-4">🚀</div>
             <h2 className="text-xl font-bold text-black mb-2">Get started in 3 steps</h2>
@@ -139,7 +139,7 @@ export default function DashboardPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/products/new">
-                <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+                <Button className="bg-black hover:opacity-90 text-white gap-2">
                   <Plus className="h-4 w-4" />
                   1. Add your first product
                 </Button>
@@ -163,7 +163,7 @@ export default function DashboardPage() {
             <TabsTrigger value="alerts" className="relative">
               Alerts
               {data.summary.activeAlerts > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center h-4 w-4 rounded-full bg-orange-500 text-white text-xs font-bold">
+                <span className="ml-2 inline-flex items-center justify-center h-4 w-4 rounded-full bg-green-600 text-white text-xs font-bold">
                   {data.summary.activeAlerts > 9 ? '9+' : data.summary.activeAlerts}
                 </span>
               )}
@@ -178,7 +178,7 @@ export default function DashboardPage() {
             {data.comparisonRows.length === 0 && data.summary.totalProducts > 0 && (
               <div className="mt-4 text-center text-[#9CA3AF] text-sm">
                 <p>You have products but no linked competitors.</p>
-                <Link href="/products" className="text-green-600 hover:underline">
+                <Link href="/products" className="text-black underline underline-offset-2 hover:opacity-70">
                   Go to Products
                 </Link>{' '}
                 to link competitors to your products.

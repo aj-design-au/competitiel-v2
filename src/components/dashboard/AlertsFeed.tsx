@@ -51,9 +51,9 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
   }
 
   const typeConfig = {
-    price_change: { label: 'Price Change', color: 'bg-blue-100 text-blue-700' },
-    margin_warning: { label: 'Margin Warning', color: 'bg-red-100 text-red-700' },
-    undercut: { label: 'Undercut Alert', color: 'bg-orange-100 text-orange-700' },
+    price_change: { label: 'Price Change', color: 'bg-green-50 text-green-700' },
+    margin_warning: { label: 'Margin Warning', color: 'bg-red-50 text-red-600' },
+    undercut: { label: 'Undercut Alert', color: 'bg-[#F3F4F6] text-[#4B5563]' },
   }
 
   if (alerts.length === 0) {
@@ -74,7 +74,7 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
             key={alert.id}
             className="flex items-start gap-3 border-b border-[#F3F4F6] px-4 py-3"
           >
-            <Bell className="h-4 w-4 text-orange-500 mt-0.5 flex-shrink-0" />
+            <Bell className="h-4 w-4 text-[#9CA3AF] mt-0.5 flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <Badge className={`text-xs ${type.color}`}>{type.label}</Badge>

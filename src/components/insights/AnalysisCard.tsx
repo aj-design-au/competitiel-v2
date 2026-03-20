@@ -24,13 +24,13 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
 
   const riskColors = {
     low: 'bg-green-100 text-green-700',
-    medium: 'bg-yellow-100 text-yellow-700',
+    medium: 'bg-[#F3F4F6] text-[#4B5563]',
     high: 'bg-red-100 text-red-700',
   }
 
   const urgencyColors = {
-    low: 'text-gray-600',
-    medium: 'text-orange-600',
+    low: 'text-[#4B5563]',
+    medium: 'text-green-600',
     high: 'text-red-600 font-semibold',
   }
 
@@ -78,7 +78,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {data.changesDetected.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-black mb-3 flex items-center gap-2">
-                <BarChart2 className="h-4 w-4 text-blue-500" />
+                <BarChart2 className="h-4 w-4 text-[#4B5563]" />
                 Price Changes Detected
               </h4>
               <div className="space-y-2">
@@ -107,7 +107,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Reasoning */}
           <div>
             <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
-              <Lightbulb className="h-4 w-4 text-yellow-500" />
+              <Lightbulb className="h-4 w-4 text-green-600" />
               Why Prices Likely Changed
             </h4>
             <p className="text-sm text-[#4B5563] leading-relaxed">
@@ -118,7 +118,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Your Position */}
           <div>
             <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
-              <AlertTriangle className="h-4 w-4 text-orange-500" />
+              <AlertTriangle className="h-4 w-4 text-[#4B5563]" />
               Your Competitive Position
             </h4>
             <p className="text-sm text-[#4B5563] leading-relaxed">

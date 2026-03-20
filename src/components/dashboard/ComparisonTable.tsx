@@ -368,7 +368,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-7 w-7 text-gray-500"
+                          className="h-7 w-7 text-[#9CA3AF]"
                           onClick={cancelEdit}
                         >
                           <X className="h-3.5 w-3.5" />
