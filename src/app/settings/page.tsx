@@ -143,7 +143,7 @@ export default function SettingsPage() {
             </div>
             <Badge
               variant="outline"
-              className={hasGeminiKey ? 'text-green-600 border-green-200' : 'text-orange-600 border-orange-200'}
+              className={hasGeminiKey ? 'text-green-600 border-green-200' : 'text-[#4B5563] border-[#E5E7EB]'}
             >
               {hasGeminiKey ? 'Configured' : 'Not configured'}
             </Badge>

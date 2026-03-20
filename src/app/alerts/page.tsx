@@ -31,9 +31,9 @@ interface AlertData {
 }
 
 const typeConfig: Record<string, { label: string; color: string }> = {
-  price_change: { label: 'Price Change', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  price_change: { label: 'Price Change', color: 'bg-green-50 text-green-700 border-green-200' },
   margin_warning: { label: 'Margin Warning', color: 'bg-red-100 text-red-700 border-red-200' },
-  undercut: { label: 'Undercut Alert', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+  undercut: { label: 'Undercut Alert', color: 'bg-[#F3F4F6] text-[#4B5563] border-[#E5E7EB]' },
 }
 
 export default function AlertsPage() {
@@ -156,7 +156,7 @@ export default function AlertsPage() {
                       : 'border-[#F3F4F6] bg-[#F8F9FA] opacity-60'
                   }`}
                 >
-                  <Bell className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isActive ? 'text-orange-500' : 'text-[#9CA3AF]'}`} />
+                  <Bell className={`h-4 w-4 mt-0.5 flex-shrink-0 ${isActive ? 'text-[#9CA3AF]' : 'text-[#9CA3AF]'}`} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <Badge className={`text-xs border ${type.color}`}>
