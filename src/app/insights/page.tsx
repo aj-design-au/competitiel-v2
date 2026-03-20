@@ -93,7 +93,7 @@ export default function InsightsPage() {
         <Alert>
           <Info className="h-4 w-4" />
           <AlertDescription>
-            Gemini API key not configured. Add <code className="font-mono text-xs bg-gray-100 px-1 py-0.5 rounded">GEMINI_API_KEY</code> to your environment variables to enable AI insights.
+            Gemini API key not configured. Add <code className="font-mono text-xs bg-[#F3F4F6] px-1 py-0.5 rounded">GEMINI_API_KEY</code> to your environment variables to enable AI insights.
           </AlertDescription>
         </Alert>
       )}
@@ -108,7 +108,7 @@ export default function InsightsPage() {
       )}
 
       {analyses.length === 0 ? (
-        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+        <div className="rounded-[32px] border border-[#E5E7EB] bg-white shadow-soft p-12 text-center">
           <Sparkles className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-black mb-2">
             No analyses yet

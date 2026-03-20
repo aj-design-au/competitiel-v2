@@ -141,7 +141,7 @@ export function CompetitorForm({ initialData, mode }: CompetitorFormProps) {
       <div className="flex gap-3 pt-2">
         <Button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white"
+          className="bg-black hover:opacity-90 text-white"
           disabled={loading}
         >
           {loading ? (

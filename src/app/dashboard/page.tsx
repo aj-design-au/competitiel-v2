@@ -132,7 +132,6 @@ export default function DashboardPage() {
       {!hasData && (
         <Card className="border border-[#E5E7EB] bg-[#F8F9FA]">
           <CardContent className="py-12 text-center">
-            <div className="text-5xl mb-4">🚀</div>
             <h2 className="text-xl font-bold text-black mb-2">Get started in 3 steps</h2>
             <p className="text-[#4B5563] mb-6 max-w-md mx-auto">
               Set up your competitive intelligence dashboard by following these steps.
@@ -163,7 +162,7 @@ export default function DashboardPage() {
             <TabsTrigger value="alerts" className="relative">
               Alerts
               {data.summary.activeAlerts > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center h-4 w-4 rounded-full bg-green-600 text-white text-xs font-bold">
+                <span className="ml-2 inline-flex items-center justify-center h-4 w-4 rounded-full bg-black text-white text-xs font-bold">
                   {data.summary.activeAlerts > 9 ? '9+' : data.summary.activeAlerts}
                 </span>
               )}

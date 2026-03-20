@@ -25,7 +25,7 @@ export default async function CompetitorsPage() {
           <p className="text-sm text-[#9CA3AF] mt-1">Track competitors and their pricing</p>
         </div>
         <Link href="/competitors/new">
-          <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+          <Button className="bg-black hover:opacity-90 text-white gap-2">
             <Plus className="h-4 w-4" />
             Add competitor
           </Button>
@@ -33,7 +33,7 @@ export default async function CompetitorsPage() {
       </div>
 
       {(!competitors || competitors.length === 0) ? (
-        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+        <div className="rounded-[32px] border border-[#E5E7EB] bg-white shadow-soft p-12 text-center">
           <Users className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-black mb-2">
             No competitors yet
@@ -42,7 +42,7 @@ export default async function CompetitorsPage() {
             Add your first competitor to start tracking their prices.
           </p>
           <Link href="/competitors/new">
-            <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+            <Button className="bg-black hover:opacity-90 text-white gap-2">
               <Plus className="h-4 w-4" />
               Add your first competitor
             </Button>
@@ -77,7 +77,7 @@ export default async function CompetitorsPage() {
                         href={competitor.website_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-green-600 hover:text-green-700 truncate"
+                        className="flex items-center gap-1.5 text-[#4B5563] hover:text-black truncate"
                       >
                         <Globe className="h-3.5 w-3.5 flex-shrink-0" />
                         {competitor.website_url.replace(/^https?:\/\//, '')}

@@ -26,7 +26,7 @@ export default async function ProductsPage() {
           <p className="text-sm text-[#9CA3AF] mt-1">Your product portfolio</p>
         </div>
         <Link href="/products/new">
-          <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+          <Button className="bg-black hover:opacity-90 text-white gap-2">
             <Plus className="h-4 w-4" />
             Add product
           </Button>
@@ -34,7 +34,7 @@ export default async function ProductsPage() {
       </div>
 
       {(!products || products.length === 0) ? (
-        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+        <div className="rounded-[32px] border border-[#E5E7EB] bg-white shadow-soft p-12 text-center">
           <Package className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-black mb-2">
             No products yet
@@ -43,7 +43,7 @@ export default async function ProductsPage() {
             Add your first product to start tracking it against competitors.
           </p>
           <Link href="/products/new">
-            <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+            <Button className="bg-black hover:opacity-90 text-white gap-2">
               <Plus className="h-4 w-4" />
               Add your first product
             </Button>
@@ -97,7 +97,7 @@ export default async function ProductsPage() {
                     {margin && (
                       <div className="flex justify-between">
                         <span className="text-[#9CA3AF]">Margin</span>
-                        <span className={`font-medium ${marginBelowTarget ? 'text-red-600' : 'text-green-600'}`}>
+                        <span className={`font-medium ${marginBelowTarget ? 'text-red-600' : 'text-[#4B5563]'}`}>
                           {margin}%
                           {product.target_margin && (
                             <span className="text-[#9CA3AF] font-normal text-xs ml-1">

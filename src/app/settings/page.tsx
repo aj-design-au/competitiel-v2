@@ -66,8 +66,8 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <div className="h-8 w-48 bg-gray-200 rounded animate-pulse" />
-        <div className="h-64 bg-gray-200 rounded animate-pulse" />
+        <div className="h-8 w-48 bg-[#E5E7EB] rounded animate-pulse" />
+        <div className="h-64 bg-[#E5E7EB] rounded animate-pulse" />
       </div>
     )
   }
@@ -111,7 +111,7 @@ export default function SettingsPage() {
             </div>
             <Button
               type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-black hover:opacity-90 text-white"
               disabled={savingProfile}
             >
               {savingProfile ? (
@@ -143,7 +143,7 @@ export default function SettingsPage() {
             </div>
             <Badge
               variant="outline"
-              className={hasGeminiKey ? 'text-green-600 border-green-200' : 'text-[#4B5563] border-[#E5E7EB]'}
+              className="text-[#4B5563] border-[#E5E7EB]"
             >
               {hasGeminiKey ? 'Configured' : 'Not configured'}
             </Badge>
@@ -155,7 +155,7 @@ export default function SettingsPage() {
               <AlertDescription>
                 <p className="font-medium mb-1">To enable AI insights:</p>
                 <ol className="list-decimal list-inside space-y-1 text-sm">
-                  <li>Get a free API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">Google AI Studio</a></li>
+                  <li>Get a free API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-black underline underline-offset-2 hover:opacity-70">Google AI Studio</a></li>
                   <li>Add <code className="bg-[#F3F4F6] px-1 py-0.5 rounded text-xs font-mono">GEMINI_API_KEY=your-key</code> to your environment variables</li>
                   <li>Redeploy the application</li>
                 </ol>
@@ -200,7 +200,7 @@ export default function SettingsPage() {
                 <p className="text-sm font-medium text-black">Margin warning</p>
                 <p className="text-xs text-[#9CA3AF]">Alert when your margin drops below target</p>
               </div>
-              <Badge variant="outline" className="text-green-600 border-green-200">Active</Badge>
+              <Badge variant="outline" className="text-[#4B5563] border-[#E5E7EB]">Active</Badge>
             </div>
           </div>
 

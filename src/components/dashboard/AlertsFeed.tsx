@@ -51,8 +51,8 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
   }
 
   const typeConfig = {
-    price_change: { label: 'Price Change', color: 'bg-green-50 text-green-700' },
-    margin_warning: { label: 'Margin Warning', color: 'bg-red-50 text-red-600' },
+    price_change: { label: 'Price Change', color: 'bg-[#F3F4F6] text-[#4B5563]' },
+    margin_warning: { label: 'Margin Warning', color: 'bg-[#F3F4F6] text-black' },
     undercut: { label: 'Undercut Alert', color: 'bg-[#F3F4F6] text-[#4B5563]' },
   }
 
@@ -88,7 +88,7 @@ export function AlertsFeed({ initialAlerts }: AlertsFeedProps) {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-7 w-7 text-green-600 hover:text-green-700"
+                className="h-7 w-7 text-[#4B5563] hover:text-black"
                 onClick={() => actionAlert(alert.id)}
                 title="Mark as actioned"
               >

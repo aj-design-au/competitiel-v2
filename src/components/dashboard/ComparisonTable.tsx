@@ -68,8 +68,8 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
   const SortIcon = ({ col }: { col: SortKey }) => {
     if (sortKey !== col) return <ArrowUpDown className="ml-1 h-3 w-3 opacity-40" />
     return sortDir === 'asc'
-      ? <ArrowUp className="ml-1 h-3 w-3 text-green-600" />
-      : <ArrowDown className="ml-1 h-3 w-3 text-green-600" />
+      ? <ArrowUp className="ml-1 h-3 w-3 text-black" />
+      : <ArrowDown className="ml-1 h-3 w-3 text-black" />
   }
 
   const sorted = [...rows]
@@ -170,8 +170,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-[24px] border border-dashed border-[#E5E7EB] bg-white p-12 text-center">
-        <div className="text-4xl mb-3">📊</div>
+      <div className="rounded-[32px] border border-[#E5E7EB] bg-white shadow-soft p-12 text-center">
         <h3 className="text-lg font-semibold text-black mb-2">
           No price comparisons yet
         </h3>
@@ -303,7 +302,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
             {sorted.map((row) => {
               const isEditing = editingId === row.competitorProduct.id
               const isSaving = savingId === row.competitorProduct.id
-              const diffColor = row.priceDiff > 0 ? 'text-green-600' : row.priceDiff < 0 ? 'text-red-600' : 'text-[#9CA3AF]'
+              const diffColor = row.priceDiff > 0 ? 'text-black' : row.priceDiff < 0 ? 'text-[#4B5563]' : 'text-[#9CA3AF]'
 
               return (
                 <TableRow
@@ -359,7 +358,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-7 w-7 text-green-600"
+                          className="h-7 w-7 text-[#4B5563] hover:text-black"
                           disabled={isSaving}
                           onClick={() => saveEdit(row.competitorProduct.id)}
                         >
@@ -403,7 +402,7 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                       <PriceSparkline
                         data={row.competitorProduct.priceHistory}
                         currentPrice={row.competitorProduct.price}
-                        color={row.priceDiff >= 0 ? '#16A34A' : '#DC2626'}
+                        color="#000000"
                       />
                     </div>
                   </TableCell>

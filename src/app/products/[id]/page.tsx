@@ -99,7 +99,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <span className={`font-semibold ${
                   product.target_margin && parseFloat(margin) < product.target_margin
                     ? 'text-red-600'
-                    : 'text-green-600'
+                    : 'text-[#4B5563]'
                 }`}>
                   {margin}%
                 </span>

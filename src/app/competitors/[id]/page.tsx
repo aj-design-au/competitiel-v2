@@ -73,7 +73,7 @@ export default async function CompetitorDetailPage({ params }: Props) {
                   href={competitor.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-green-600 hover:text-green-700"
+                  className="flex items-center gap-1.5 text-[#4B5563] hover:text-black"
                 >
                   <Globe className="h-3.5 w-3.5" />
                   Visit site

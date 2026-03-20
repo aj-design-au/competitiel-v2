@@ -39,8 +39,8 @@ export function SummaryCards({
       value: activeAlerts,
       description: activeAlerts === 1 ? 'Alert needs attention' : 'Alerts need attention',
       icon: Bell,
-      color: activeAlerts > 0 ? 'text-green-600' : 'text-[#4B5563]',
-      bg: activeAlerts > 0 ? 'bg-green-50' : 'bg-[#F3F4F6]',
+      color: 'text-[#4B5563]',
+      bg: 'bg-[#F3F4F6]',
     },
     {
       title: 'Last Analysis',
@@ -49,8 +49,8 @@ export function SummaryCards({
         : 'Never',
       description: 'AI insights run',
       icon: Sparkles,
-      color: 'text-green-600',
-      bg: 'bg-green-50',
+      color: 'text-[#4B5563]',
+      bg: 'bg-[#F3F4F6]',
     },
   ]
 

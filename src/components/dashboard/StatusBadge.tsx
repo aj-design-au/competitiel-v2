@@ -9,7 +9,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
   const config = {
     Underpriced: {
       label: 'Underpriced',
-      className: 'bg-green-50 text-green-700',
+      className: 'bg-[#F3F4F6] text-black',
     },
     Competitive: {
       label: 'Competitive',
@@ -17,7 +17,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     },
     Premium: {
       label: 'Premium',
-      className: 'bg-red-50 text-red-600',
+      className: 'bg-[#F3F4F6] text-[#4B5563]',
     },
   }
 

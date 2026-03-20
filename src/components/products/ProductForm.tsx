@@ -151,14 +151,14 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
         <div className="rounded-[24px] bg-[#F8F9FA] border border-[#E5E7EB] p-4 text-sm">
           <div className="flex justify-between mb-1">
             <span className="text-[#4B5563]">Current margin:</span>
-            <span className={`font-semibold ${parseFloat(calculatedMargin) < 0 ? 'text-red-600' : 'text-green-600'}`}>
+            <span className={`font-semibold ${parseFloat(calculatedMargin) < 0 ? 'text-red-600' : 'text-[#4B5563]'}`}>
               {calculatedMargin}%
             </span>
           </div>
           {marginGap !== null && (
             <div className="flex justify-between">
               <span className="text-[#4B5563]">vs target:</span>
-              <span className={`font-semibold ${parseFloat(marginGap) < 0 ? 'text-red-600' : 'text-green-600'}`}>
+              <span className={`font-semibold ${parseFloat(marginGap) < 0 ? 'text-red-600' : 'text-[#4B5563]'}`}>
                 {parseFloat(marginGap) > 0 ? '+' : ''}{marginGap}%
               </span>
             </div>
@@ -207,7 +207,7 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
       <div className="flex gap-3 pt-2">
         <Button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white"
+          className="bg-black hover:opacity-90 text-white"
           disabled={loading}
         >
           {loading ? (

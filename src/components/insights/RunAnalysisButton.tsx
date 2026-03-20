@@ -75,7 +75,7 @@ export function RunAnalysisButton({ competitors, onAnalysisComplete }: RunAnalys
       <Button
         onClick={handleRun}
         disabled={loading}
-        className="bg-green-600 hover:bg-green-700 text-white gap-2"
+        className="bg-black hover:opacity-90 text-white gap-2"
       >
         {loading ? (
           <><Loader2 className="h-4 w-4 animate-spin" />Analysing...</>

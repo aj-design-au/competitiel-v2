@@ -13,7 +13,7 @@ interface PriceSparklineProps {
   color?: string
 }
 
-export function PriceSparkline({ data, currentPrice, color = '#16A34A' }: PriceSparklineProps) {
+export function PriceSparkline({ data, currentPrice, color = '#000000' }: PriceSparklineProps) {
   if (!data || data.length < 2) {
     return (
       <div className="flex items-center justify-center h-10 w-24 text-xs text-[#9CA3AF]">

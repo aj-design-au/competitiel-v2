@@ -175,7 +175,7 @@ export function ProductLinksManager({ productId, existingLinks, competitors }: P
             onClick={handleAdd}
             disabled={!selectedCpId || adding}
             size="sm"
-            className="bg-green-600 hover:bg-green-700 text-white gap-2"
+            className="bg-black hover:opacity-90 text-white gap-2"
           >
             {adding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
             Link

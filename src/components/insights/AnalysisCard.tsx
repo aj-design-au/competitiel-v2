@@ -23,15 +23,15 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
   const data = analysis.analysis
 
   const riskColors = {
-    low: 'bg-green-100 text-green-700',
+    low: 'bg-[#F3F4F6] text-[#4B5563]',
     medium: 'bg-[#F3F4F6] text-[#4B5563]',
-    high: 'bg-red-100 text-red-700',
+    high: 'bg-[#F3F4F6] text-black',
   }
 
   const urgencyColors = {
     low: 'text-[#4B5563]',
-    medium: 'text-green-600',
-    high: 'text-red-600 font-semibold',
+    medium: 'text-[#4B5563]',
+    high: 'text-black font-semibold',
   }
 
   return (
@@ -90,7 +90,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
                         ${change.previousPrice.toFixed(2)}
                       </span>
                       <span className="font-semibold">${change.currentPrice.toFixed(2)}</span>
-                      <span className={`flex items-center gap-1 ${change.changePercent > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      <span className={`flex items-center gap-1 ${change.changePercent > 0 ? 'text-black' : 'text-[#4B5563]'}`}>
                         {change.changePercent > 0
                           ? <TrendingUp className="h-3.5 w-3.5" />
                           : <TrendingDown className="h-3.5 w-3.5" />
@@ -107,7 +107,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {/* Reasoning */}
           <div>
             <h4 className="text-sm font-semibold text-black mb-2 flex items-center gap-2">
-              <Lightbulb className="h-4 w-4 text-green-600" />
+              <Lightbulb className="h-4 w-4 text-[#4B5563]" />
               Why Prices Likely Changed
             </h4>
             <p className="text-sm text-[#4B5563] leading-relaxed">
@@ -130,7 +130,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
           {data.recommendedAdjustments.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-black mb-3 flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-green-500" />
+                <TrendingUp className="h-4 w-4 text-[#4B5563]" />
                 Recommended Adjustments
               </h4>
               <div className="space-y-3">
@@ -150,7 +150,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
                     <div className="flex items-center gap-2 text-sm mb-2">
                       <span className="text-[#9CA3AF]">Current: ${rec.currentYourPrice.toFixed(2)}</span>
                       <span className="text-[#9CA3AF]">→</span>
-                      <span className="font-semibold text-green-600">${rec.recommendedPrice.toFixed(2)}</span>
+                      <span className="font-semibold text-black">${rec.recommendedPrice.toFixed(2)}</span>
                     </div>
                     <p className="text-xs text-[#9CA3AF] leading-relaxed">{rec.reasoning}</p>
                   </div>
@@ -168,7 +168,7 @@ export function AnalysisCard({ analysis }: AnalysisCardProps) {
               <ul className="space-y-1.5">
                 {data.patternsDetected.map((pattern, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-[#4B5563]">
-                    <span className="text-green-500 mt-0.5">•</span>
+                    <span className="text-[#9CA3AF] mt-0.5">•</span>
                     {pattern}
                   </li>
                 ))}

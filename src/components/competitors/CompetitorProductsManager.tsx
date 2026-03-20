@@ -91,7 +91,7 @@ function AddProductDialog({ competitorId, onAdded }: AddProductDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white gap-2">
+        <Button size="sm" className="bg-black hover:opacity-90 text-white gap-2">
           <Plus className="h-4 w-4" />
           Add product
         </Button>
@@ -148,7 +148,7 @@ function AddProductDialog({ competitorId, onAdded }: AddProductDialogProps) {
             </div>
           </div>
           <div className="flex gap-3 pt-2">
-            <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white" disabled={loading}>
+            <Button type="submit" className="bg-black hover:opacity-90 text-white" disabled={loading}>
               {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
               Add product
             </Button>
@@ -299,7 +299,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                       href={product.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-xs text-green-600 hover:text-green-700 mt-0.5"
+                      className="flex items-center gap-1 text-xs text-[#4B5563] hover:text-black mt-0.5"
                     >
                       <Globe className="h-3 w-3" />
                       View product
@@ -358,7 +358,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                         if (e.key === 'Escape') setEditingId(null)
                       }}
                     />
-                    <Button size="sm" className="h-7 px-2 bg-green-600 hover:bg-green-700 text-white" disabled={isSaving} onClick={() => savePrice(product.id)}>
+                    <Button size="sm" className="h-7 px-2 bg-black hover:opacity-90 text-white" disabled={isSaving} onClick={() => savePrice(product.id)}>
                       {isSaving ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Save'}
                     </Button>
                     <Button size="sm" variant="ghost" className="h-7 px-2" onClick={() => setEditingId(null)}>Cancel</Button>
@@ -375,7 +375,7 @@ export function CompetitorProductsManager({ competitorId, userId, initialProduct
                       {priceTrend !== null && (
                         <Badge
                           variant="outline"
-                          className={`text-xs ${priceTrend > 0 ? 'text-green-600 border-green-200' : 'text-red-600 border-red-200'}`}
+                          className="text-xs text-[#4B5563] border-[#E5E7EB]"
                         >
                           {priceTrend > 0 ? <TrendingUp className="h-3 w-3 mr-0.5" /> : <TrendingDown className="h-3 w-3 mr-0.5" />}
                           {Math.abs(priceTrend).toFixed(1)}%

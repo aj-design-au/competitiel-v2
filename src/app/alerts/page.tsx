@@ -31,8 +31,8 @@ interface AlertData {
 }
 
 const typeConfig: Record<string, { label: string; color: string }> = {
-  price_change: { label: 'Price Change', color: 'bg-green-50 text-green-700 border-green-200' },
-  margin_warning: { label: 'Margin Warning', color: 'bg-red-100 text-red-700 border-red-200' },
+  price_change: { label: 'Price Change', color: 'bg-[#F3F4F6] text-[#4B5563] border-[#E5E7EB]' },
+  margin_warning: { label: 'Margin Warning', color: 'bg-[#F3F4F6] text-black border-[#E5E7EB]' },
   undercut: { label: 'Undercut Alert', color: 'bg-[#F3F4F6] text-[#4B5563] border-[#E5E7EB]' },
 }
 
@@ -124,7 +124,7 @@ export default function AlertsPage() {
       </div>
 
       {alerts.length === 0 ? (
-        <div className="rounded-[24px] border-2 border-dashed border-[#E5E7EB] p-12 text-center">
+        <div className="rounded-[32px] border border-[#E5E7EB] bg-white shadow-soft p-12 text-center">
           <Bell className="h-12 w-12 text-[#9CA3AF] mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-black mb-2">
             {showDismissed ? 'No alerts found' : 'No active alerts'}
@@ -144,7 +144,7 @@ export default function AlertsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {alerts.map((alert) => {
-              const type = typeConfig[alert.type] ?? { label: alert.type, color: 'bg-gray-100 text-gray-700' }
+              const type = typeConfig[alert.type] ?? { label: alert.type, color: 'bg-[#F3F4F6] text-[#4B5563] border-[#E5E7EB]' }
               const isActive = !alert.dismissed
 
               return (
@@ -163,12 +163,12 @@ export default function AlertsPage() {
                         {type.label}
                       </Badge>
                       {alert.actioned && (
-                        <Badge variant="outline" className="text-xs text-green-600 border-green-200">
+                        <Badge variant="outline" className="text-xs text-[#4B5563] border-[#E5E7EB]">
                           Actioned
                         </Badge>
                       )}
                       {alert.dismissed && !alert.actioned && (
-                        <Badge variant="outline" className="text-xs text-gray-500">
+                        <Badge variant="outline" className="text-xs text-[#9CA3AF]">
                           Dismissed
                         </Badge>
                       )}
@@ -192,7 +192,7 @@ export default function AlertsPage() {
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 text-green-600 hover:text-green-700"
+                        className="h-7 w-7 text-[#4B5563] hover:text-black"
                         onClick={() => actionAlert(alert.id)}
                         title="Mark as actioned"
                       >
