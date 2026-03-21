@@ -20,8 +20,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Competitiel — Competitive Pricing Intelligence',
-    template: '%s | Competitiel',
+    default: 'Competitel — Competitive Pricing Intelligence',
+    template: '%s | Competitel',
   },
   description:
     'Track competitor prices, manage your pricing strategy, and get AI-powered insights to stay competitive.',

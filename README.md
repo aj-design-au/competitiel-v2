@@ -1,4 +1,4 @@
-# Competitiel V2
+# Competitel V2
 
 A production-ready competitive pricing intelligence SaaS tool built with Next.js 16, Supabase, and Google Gemini AI.
 
@@ -36,7 +36,7 @@ A production-ready competitive pricing intelligence SaaS tool built with Next.js
 1. **Clone and install dependencies:**
    ```bash
    git clone <repo>
-   cd competitiel-v2
+   cd competitel-v2
    npm install
    ```
 

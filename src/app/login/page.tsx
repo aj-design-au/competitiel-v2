@@ -35,7 +35,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <span className="font-extrabold text-2xl tracking-tight text-black">Competitiel</span>
+          <span className="font-extrabold text-2xl tracking-tight text-black">Competitel</span>
         </div>
 
         <div className="bg-white rounded-[32px] border border-[#E5E7EB] shadow-card p-8 md:p-10">

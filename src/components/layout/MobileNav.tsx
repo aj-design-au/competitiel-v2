@@ -38,7 +38,7 @@ export function MobileNav() {
       <SheetContent side="left" className="w-64 p-0 bg-white border-r border-[#E5E7EB]">
         <div className="h-16 border-b border-[#E5E7EB] px-6 flex items-center gap-2">
           <TrendingUp className="h-6 w-6 text-black" />
-          <span className="text-lg font-bold text-black">Competitiel</span>
+          <span className="text-lg font-bold text-black">Competitel</span>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-4">
           {navItems.map((item) => {

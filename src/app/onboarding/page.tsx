@@ -49,7 +49,7 @@ export default function OnboardingPage() {
   return (
     <div className="w-full max-w-2xl">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-black tracking-tight">How will you use Competitiel?</h1>
+        <h1 className="text-3xl font-bold text-black tracking-tight">How will you use Competitel?</h1>
         <p className="text-[#9CA3AF] mt-2 text-base">
           Choose the option that best describes your business
         </p>

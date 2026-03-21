@@ -70,7 +70,7 @@ export async function scrapePrice(url: string): Promise<ScrapeResult> {
       signal: controller.signal,
       headers: {
         'User-Agent':
-          'Mozilla/5.0 (compatible; CompetitielBot/1.0; +https://competitiel.com)',
+          'Mozilla/5.0 (compatible; CompetitelBot/1.0; +https://competitel.com)',
         Accept: 'text/html,application/xhtml+xml',
         'Accept-Language': 'en-AU,en;q=0.9',
       },

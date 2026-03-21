@@ -22,7 +22,7 @@ export default async function HomePage() {
           className="w-full max-w-5xl flex items-center justify-between rounded-full bg-white border border-[#E5E7EB] px-5 py-3"
           style={{ boxShadow: '0 10px 25px -5px rgba(0,0,0,0.04)' }}
         >
-          <span className="text-base font-extrabold text-black tracking-tight">Competitiel</span>
+          <span className="text-base font-extrabold text-black tracking-tight">Competitel</span>
           <div className="flex items-center gap-3">
             <Link
               href="/login"
@@ -172,7 +172,7 @@ export default async function HomePage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between gap-8">
             <div>
-              <div className="font-extrabold text-lg tracking-tight text-white mb-2">Competitiel</div>
+              <div className="font-extrabold text-lg tracking-tight text-white mb-2">Competitel</div>
               <p className="text-white/40 text-sm">Track prices. Win on value.</p>
             </div>
             <div className="flex gap-8 text-sm text-white/60">
@@ -181,7 +181,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="border-t border-white/10 mt-10 pt-8 text-sm text-white/40">
-            &copy; {new Date().getFullYear()} Competitiel. All rights reserved.
+            &copy; {new Date().getFullYear()} Competitel. All rights reserved.
           </div>
         </div>
       </footer>

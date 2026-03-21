@@ -31,7 +31,7 @@ export function Sidebar() {
       <div className="h-16 border-b border-[#E5E7EB] px-6 flex items-center gap-2">
         <TrendingUp className="h-6 w-6 text-black" />
         <span className="text-lg font-bold text-black">
-          Competitiel
+          Competitel
         </span>
       </div>
 
