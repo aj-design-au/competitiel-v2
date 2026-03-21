@@ -20,6 +20,7 @@ interface SupabaseLink {
     current_price: number
     currency: string
     updated_at: string
+    last_scraped_at: string | null
     competitor_id: string
     competitors: {
       id: string
@@ -44,7 +45,7 @@ export async function GET() {
   const productIds = products.map((p: { id: string }) => p.id)
 
   // Get rest of data in parallel
-  const [competitorsRes, alertsRes, linksRes, analysisRes] = await Promise.all([
+  const [competitorsRes, alertsRes, linksRes, analysisRes, profileRes] = await Promise.all([
     supabase.from('competitors').select('*').eq('user_id', user.id).eq('active', true),
     supabase.from('price_alerts').select('*').eq('user_id', user.id).eq('dismissed', false),
     productIds.length > 0
@@ -54,19 +55,21 @@ export async function GET() {
           competitor_product_id,
           products!inner(id, name, price, cost_price, target_margin, category),
           competitor_products!inner(
-            id, name, current_price, currency, updated_at, competitor_id,
+            id, name, current_price, currency, updated_at, last_scraped_at, competitor_id,
             competitors!inner(id, name),
             price_history(price, currency, recorded_at)
           )
         `).in('product_id', productIds)
       : Promise.resolve({ data: [] }),
     supabase.from('analysis_results').select('created_at').eq('user_id', user.id).order('created_at', { ascending: false }).limit(1),
+    supabase.from('profiles').select('business_role').eq('id', user.id).single(),
   ])
 
   const competitors = competitorsRes.data ?? []
   const alerts = alertsRes.data ?? []
   const links = (linksRes.data ?? []) as unknown as SupabaseLink[]
   const lastAnalysis = analysisRes.data?.[0]?.created_at ?? null
+  const businessRole = (profileRes.data?.business_role as string | null) ?? null
 
   const comparisonRows = links.map((link) => {
     const product = link.products
@@ -102,6 +105,7 @@ export async function GET() {
         price: theirPrice,
         currency: cp.currency,
         updatedAt: cp.updated_at,
+        lastScrapedAt: cp.last_scraped_at,
         priceHistory: sortedHistory,
       },
       priceDiff: calculatePriceDiff(yourPrice, theirPrice),
@@ -118,6 +122,26 @@ export async function GET() {
     }
   })
 
+  // Compute role-specific insights
+  const aboveMarketRows = comparisonRows.filter(r => r.status === 'Premium')
+  const aboveMarketCount = aboveMarketRows.length
+
+  // Margin uplift for wholesaler: sum potential savings where a cheaper competitor exists
+  const marginUplift = comparisonRows.reduce((acc, r) => {
+    if (r.status === 'Premium' && r.yourProduct.costPrice) {
+      // Competitor is cheaper — potential savings is the price gap per unit
+      return acc + Math.abs(r.priceDiff)
+    }
+    return acc
+  }, 0)
+
+  const roleInsights = {
+    aboveMarketCount,
+    undercutCount: aboveMarketCount,
+    mapViolations: aboveMarketCount,
+    marginUplift: Math.round(marginUplift * 100) / 100,
+  }
+
   return NextResponse.json({
     summary: {
       totalProducts: products.length,
@@ -127,5 +151,7 @@ export async function GET() {
     },
     comparisonRows,
     alerts: alerts.slice(0, 5),
+    businessRole,
+    roleInsights,
   })
 }

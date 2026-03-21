@@ -1,15 +1,24 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import { analyzeCompetitorPricing } from '@/lib/gemini/analyzer'
+import type { BusinessRole } from '@/lib/gemini/analyzer'
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  if (!process.env.GEMINI_API_KEY) {
+  // Fetch user profile to get business_role and optional gemini_api_key
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('business_role, gemini_api_key')
+    .eq('id', user.id)
+    .single()
+
+  const apiKey = (profile?.gemini_api_key as string | null) || process.env.GEMINI_API_KEY
+  if (!apiKey) {
     return NextResponse.json(
-      { error: 'GEMINI_API_KEY not configured. Please add it in Settings.' },
+      { error: 'Gemini API key required. Add it in Settings.', code: 'NO_API_KEY' },
       { status: 400 }
     )
   }
@@ -107,24 +116,34 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    const analysis = await analyzeCompetitorPricing({
-      competitorName: competitor.name,
-      competitorProducts,
-      yourProducts,
-    })
-
-    // Save to database
-    const { data: saved } = await supabase
-      .from('analysis_results')
-      .insert({
-        user_id: user.id,
-        competitor_id: competitor.id,
-        analysis,
+    try {
+      const analysis = await analyzeCompetitorPricing({
+        competitorName: competitor.name,
+        competitorProducts,
+        yourProducts,
+        businessRole: (profile?.business_role as BusinessRole) ?? null,
+        apiKey,
       })
-      .select()
-      .single()
 
-    analysisResults.push(saved)
+      // Save to database
+      const { data: saved } = await supabase
+        .from('analysis_results')
+        .insert({
+          user_id: user.id,
+          competitor_id: competitor.id,
+          analysis,
+        })
+        .select()
+        .single()
+
+      analysisResults.push(saved)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Analysis failed'
+      analysisResults.push({
+        error: message,
+        competitorName: competitor.name,
+      })
+    }
   }
 
   return NextResponse.json({ results: analysisResults })

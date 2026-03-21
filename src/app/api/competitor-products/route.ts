@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
+import { scrapePrice } from '@/lib/scraper'
 
 export async function GET(request: NextRequest) {
   const supabase = await createClient()
@@ -56,6 +57,31 @@ export async function POST(request: NextRequest) {
     currency: data.currency,
     source: 'manual',
   })
+
+  // Fire-and-forget background scrape if a URL was provided
+  if (data.url) {
+    const productId = data.id as string
+    const productUrl = data.url as string
+    void scrapePrice(productUrl).then(async (result) => {
+      if (result.price !== null && !result.error) {
+        await supabase
+          .from('competitor_products')
+          .update({
+            current_price: result.price,
+            currency: result.currency,
+            last_scraped_at: new Date().toISOString(),
+          })
+          .eq('id', productId)
+
+        await supabase.from('price_history').insert({
+          competitor_product_id: productId,
+          price: result.price,
+          currency: result.currency,
+          source: 'scrape',
+        })
+      }
+    }).catch(console.error)
+  }
 
   return NextResponse.json(data, { status: 201 })
 }

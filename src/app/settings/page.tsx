@@ -8,20 +8,24 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Loader2, User, Key, Bell, Check, Info } from 'lucide-react'
+import { Loader2, User, Key, Bell, Check, Eye, EyeOff } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface ProfileData {
   id: string
   email: string
   full_name: string | null
+  has_gemini_key: boolean
+  gemini_api_key_preview: string | null
 }
 
 export default function SettingsPage() {
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [fullName, setFullName] = useState('')
+  const [geminiKey, setGeminiKey] = useState('')
+  const [showGeminiKey, setShowGeminiKey] = useState(false)
   const [savingProfile, setSavingProfile] = useState(false)
+  const [savingGeminiKey, setSavingGeminiKey] = useState(false)
   const [loading, setLoading] = useState(true)
   const supabase = createClient()
 
@@ -61,7 +65,26 @@ export default function SettingsPage() {
     setSavingProfile(false)
   }
 
-  const hasGeminiKey = process.env.NEXT_PUBLIC_GEMINI_CONFIGURED === 'true' || false
+  const handleSaveGeminiKey = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSavingGeminiKey(true)
+
+    const res = await fetch('/api/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gemini_api_key: geminiKey || null }),
+    })
+
+    if (res.ok) {
+      const updated = await res.json() as ProfileData
+      setProfile(updated)
+      setGeminiKey('')
+      toast.success(geminiKey ? 'Gemini API key saved' : 'Gemini API key removed')
+    } else {
+      toast.error('Failed to save API key')
+    }
+    setSavingGeminiKey(false)
+  }
 
   if (loading) {
     return (
@@ -133,35 +156,104 @@ export default function SettingsPage() {
             <Key className="h-4 w-4" />
             AI Configuration
           </CardTitle>
-          <CardDescription>Configure Gemini AI for price analysis</CardDescription>
+          <CardDescription>
+            Add your Gemini API key to enable AI price analysis. Each user can bring their own key.
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between p-4 rounded-[24px] border border-[#E5E7EB]">
             <div>
               <p className="text-sm font-medium text-black">Gemini API Key</p>
-              <p className="text-xs text-[#9CA3AF] mt-0.5">Required for AI insights</p>
+              <p className="text-xs text-[#9CA3AF] mt-0.5">
+                {profile?.has_gemini_key
+                  ? `Key configured (${profile.gemini_api_key_preview})`
+                  : 'Not configured'}
+              </p>
             </div>
             <Badge
               variant="outline"
               className="text-[#4B5563] border-[#E5E7EB]"
             >
-              {hasGeminiKey ? 'Configured' : 'Not configured'}
+              {profile?.has_gemini_key ? 'Active' : 'Not set'}
             </Badge>
           </div>
 
-          {!hasGeminiKey && (
-            <Alert>
-              <Info className="h-4 w-4" />
-              <AlertDescription>
-                <p className="font-medium mb-1">To enable AI insights:</p>
-                <ol className="list-decimal list-inside space-y-1 text-sm">
-                  <li>Get a free API key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-black underline underline-offset-2 hover:opacity-70">Google AI Studio</a></li>
-                  <li>Add <code className="bg-[#F3F4F6] px-1 py-0.5 rounded text-xs font-mono">GEMINI_API_KEY=your-key</code> to your environment variables</li>
-                  <li>Redeploy the application</li>
-                </ol>
-              </AlertDescription>
-            </Alert>
-          )}
+          <form onSubmit={handleSaveGeminiKey} className="space-y-3">
+            <div className="space-y-2">
+              <Label htmlFor="geminiKey">
+                {profile?.has_gemini_key ? 'Replace API key' : 'Enter API key'}
+              </Label>
+              <div className="relative">
+                <Input
+                  id="geminiKey"
+                  type={showGeminiKey ? 'text' : 'password'}
+                  value={geminiKey}
+                  onChange={e => setGeminiKey(e.target.value)}
+                  placeholder="AIza..."
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] hover:text-black transition-colors"
+                  onClick={() => setShowGeminiKey(v => !v)}
+                  aria-label={showGeminiKey ? 'Hide key' : 'Show key'}
+                >
+                  {showGeminiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+              <p className="text-xs text-[#9CA3AF]">
+                Get a free key at{' '}
+                <a
+                  href="https://aistudio.google.com/apikey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-black underline underline-offset-2 hover:opacity-70"
+                >
+                  Google AI Studio
+                </a>
+                . Leave blank to use the server-level key if configured.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                type="submit"
+                className="bg-black hover:opacity-90 text-white"
+                disabled={savingGeminiKey || !geminiKey}
+              >
+                {savingGeminiKey ? (
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</>
+                ) : (
+                  <><Check className="mr-2 h-4 w-4" />Save key</>
+                )}
+              </Button>
+              {profile?.has_gemini_key && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={savingGeminiKey}
+                  onClick={async () => {
+                    setSavingGeminiKey(true)
+                    const res = await fetch('/api/profile', {
+                      method: 'PUT',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ gemini_api_key: null }),
+                    })
+                    if (res.ok) {
+                      const updated = await res.json() as ProfileData
+                      setProfile(updated)
+                      setGeminiKey('')
+                      toast.success('API key removed')
+                    } else {
+                      toast.error('Failed to remove key')
+                    }
+                    setSavingGeminiKey(false)
+                  }}
+                >
+                  Remove key
+                </Button>
+              )}
+            </div>
+          </form>
         </CardContent>
       </Card>
 
@@ -212,16 +304,16 @@ export default function SettingsPage() {
 
       <Separator />
 
-      {/* Danger zone */}
-      <Card className="border-red-200">
+      {/* Account */}
+      <Card className="border-[#E5E7EB]">
         <CardHeader>
-          <CardTitle className="text-base text-red-600">Account</CardTitle>
+          <CardTitle className="text-base text-[#4B5563]">Account</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-[#4B5563] mb-4">
             Permanently delete your account and all data.
           </p>
-          <Button variant="outline" className="border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300">
+          <Button variant="outline" className="border-[#E5E7EB] text-[#4B5563] hover:text-black hover:border-[#9CA3AF]">
             Delete account
           </Button>
         </CardContent>

@@ -296,6 +296,9 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
               >
                 <span className="flex items-center">Status <SortIcon col="status" /></span>
               </TableHead>
+              <TableHead className="whitespace-nowrap font-semibold text-right">
+                Last Updated
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -443,6 +446,15 @@ export function ComparisonTable({ rows, onPriceUpdate }: ComparisonTableProps) {
                   {/* Status */}
                   <TableCell>
                     <StatusBadge status={row.status} />
+                  </TableCell>
+
+                  {/* Last Updated */}
+                  <TableCell className="text-right">
+                    <span className="text-xs text-[#9CA3AF]">
+                      {row.competitorProduct.lastScrapedAt
+                        ? formatDistanceToNow(new Date(row.competitorProduct.lastScrapedAt), { addSuffix: true })
+                        : 'Never scraped'}
+                    </span>
                   </TableCell>
                 </TableRow>
               )

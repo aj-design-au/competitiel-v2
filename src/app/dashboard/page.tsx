@@ -13,6 +13,13 @@ import Link from 'next/link'
 import { Plus, RefreshCw, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 
+interface RoleInsights {
+  aboveMarketCount: number
+  undercutCount: number
+  mapViolations: number
+  marginUplift: number
+}
+
 interface DashboardData {
   summary: {
     totalProducts: number
@@ -29,12 +36,75 @@ interface DashboardData {
     dismissed: boolean
     actioned: boolean
   }>
+  businessRole: string | null
+  roleInsights: RoleInsights
+}
+
+function PositionBanner({ role }: { role: string | null }) {
+  let message: string
+  switch (role) {
+    case 'retailer':
+      message = 'Track competitor prices and get alerts when you are being undercut.'
+      break
+    case 'wholesaler':
+    case 'distributor':
+      message = 'Find the best source prices and maximise your margin.'
+      break
+    case 'brand_owner':
+      message = 'Monitor your brand pricing across all sellers.'
+      break
+    default:
+      message = 'Complete setup to unlock AI-powered pricing insights.'
+  }
+
+  return (
+    <div className="bg-[#F8F9FA] rounded-[24px] border border-[#E5E7EB] px-6 py-4 text-sm text-[#4B5563]">
+      {message}
+    </div>
+  )
+}
+
+function RoleBanner({ role, insights }: { role: string | null; insights: RoleInsights }) {
+  if (!role || insights.aboveMarketCount === 0) return null
+
+  let message: string
+  switch (role) {
+    case 'retailer':
+      message = insights.undercutCount === 1
+        ? `1 competitor is undercutting you. Review your prices to stay competitive.`
+        : `${insights.undercutCount} competitors are undercutting you. Review your prices to stay competitive.`
+      break
+    case 'wholesaler':
+      message = insights.aboveMarketCount === 1
+        ? `1 product has a lower competitor price available. Potential saving: $${insights.marginUplift.toFixed(2)}.`
+        : `${insights.aboveMarketCount} products have lower competitor prices available. Potential saving: $${insights.marginUplift.toFixed(2)}.`
+      break
+    case 'brand_owner':
+      message = insights.mapViolations === 1
+        ? `1 potential MAP violation detected where a seller is pricing below your listed price.`
+        : `${insights.mapViolations} potential MAP violations detected where sellers are pricing below your listed price.`
+      break
+    default:
+      return null
+  }
+
+  return (
+    <div className="rounded-[24px] border border-[#E5E7EB] bg-white px-6 py-4 flex items-center justify-between gap-4">
+      <p className="text-sm font-medium text-black">{message}</p>
+      <Link href="/insights">
+        <Button size="sm" variant="outline" className="shrink-0">
+          Run analysis
+        </Button>
+      </Link>
+    </div>
+  )
 }
 
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const [refreshingPrices, setRefreshingPrices] = useState(false)
 
   const fetchData = useCallback(async () => {
     try {
@@ -59,6 +129,26 @@ export default function DashboardPage() {
     setRefreshing(true)
     await fetchData()
     toast.success('Dashboard refreshed')
+  }
+
+  const handleRefreshAllPrices = async () => {
+    setRefreshingPrices(true)
+    toast.info('Refreshing all prices...')
+
+    try {
+      const res = await fetch('/api/scrape/batch', { method: 'POST' })
+      const result = await res.json() as { summary?: { success: number; total: number }; message?: string }
+      if (res.ok && result.summary) {
+        toast.success(`Updated ${result.summary.success} of ${result.summary.total} prices`)
+        await fetchData()
+      } else {
+        toast.error(result.message ?? 'Batch scrape failed')
+      }
+    } catch {
+      toast.error('Failed to refresh prices')
+    } finally {
+      setRefreshingPrices(false)
+    }
   }
 
   const handlePriceUpdate = async (competitorProductId: string, newPrice: number) => {
@@ -88,17 +178,36 @@ export default function DashboardPage() {
 
   const hasData = data && (data.summary.totalProducts > 0 || data.summary.activeCompetitors > 0)
 
+  const dashboardTitle = () => {
+    switch (data?.businessRole) {
+      case 'retailer': return 'Your competitive position'
+      case 'wholesaler': return 'Your margin opportunity'
+      case 'brand_owner': return 'MAP compliance'
+      default: return 'Dashboard'
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-black">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-black">{dashboardTitle()}</h1>
           <p className="text-sm text-[#9CA3AF] mt-1">
             Your competitive pricing overview
           </p>
         </div>
         <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleRefreshAllPrices}
+            disabled={refreshingPrices}
+            className="gap-2"
+          >
+            <RefreshCw className={`h-4 w-4 ${refreshingPrices ? 'animate-spin' : ''}`} />
+            Refresh All Prices
+          </Button>
           <Button
             variant="outline"
             size="sm"
@@ -128,27 +237,71 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* Onboarding prompt */}
+      {/* Static role guidance banner */}
+      {data && (
+        <PositionBanner role={data.businessRole} />
+      )}
+
+      {/* Role-aware competitive position banner */}
+      {data && hasData && (
+        <RoleBanner role={data.businessRole} insights={data.roleInsights} />
+      )}
+
+      {/* Empty state — step-by-step guide */}
       {!hasData && (
-        <Card className="border border-[#E5E7EB] bg-[#F8F9FA]">
-          <CardContent className="py-12 text-center">
-            <h2 className="text-xl font-bold text-black mb-2">Get started in 3 steps</h2>
-            <p className="text-[#4B5563] mb-6 max-w-md mx-auto">
-              Set up your competitive intelligence dashboard by following these steps.
+        <Card className="border border-[#E5E7EB] bg-white rounded-[32px]">
+          <CardContent className="py-12 px-10">
+            <h2 className="text-xl font-bold text-black mb-1">Get started</h2>
+            <p className="text-[#4B5563] mb-8 max-w-md">
+              Follow these steps to set up your competitive intelligence dashboard.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/products/new">
-                <Button className="bg-black hover:opacity-90 text-white gap-2">
-                  <Plus className="h-4 w-4" />
-                  1. Add your first product
-                </Button>
-              </Link>
-              <Link href="/competitors/new">
-                <Button variant="outline" className="gap-2">
-                  <Plus className="h-4 w-4" />
-                  2. Add a competitor
-                </Button>
-              </Link>
+            <div className="space-y-4">
+              {[
+                {
+                  step: '1',
+                  title: 'Add your products',
+                  description: 'Enter the products you sell with their current prices and cost prices.',
+                  href: '/products/new',
+                  action: 'Add a product',
+                },
+                {
+                  step: '2',
+                  title: 'Add competitors',
+                  description: 'Add the businesses you want to track pricing for.',
+                  href: '/competitors/new',
+                  action: 'Add a competitor',
+                },
+                {
+                  step: '3',
+                  title: 'Link products to competitors',
+                  description: 'Connect your products to the equivalent competitor products so prices can be compared.',
+                  href: '/products',
+                  action: 'Go to products',
+                },
+                {
+                  step: '4',
+                  title: 'Run AI analysis',
+                  description: 'Get role-specific pricing intelligence and recommendations from Gemini AI.',
+                  href: '/insights',
+                  action: 'Go to insights',
+                },
+              ].map((item) => (
+                <div key={item.step} className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#F3F4F6] text-black text-sm font-bold flex items-center justify-center">
+                    {item.step}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-black text-sm">{item.title}</p>
+                    <p className="text-sm text-[#4B5563] mt-0.5">{item.description}</p>
+                  </div>
+                  <Link href={item.href} className="flex-shrink-0">
+                    <Button variant="outline" size="sm" className="gap-2">
+                      <Plus className="h-3.5 w-3.5" />
+                      {item.action}
+                    </Button>
+                  </Link>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>

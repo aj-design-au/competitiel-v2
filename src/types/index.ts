@@ -111,6 +111,8 @@ export interface ProductRecommendation {
 
 export type PricingStatus = 'Underpriced' | 'Competitive' | 'Premium'
 
+export type BusinessRole = 'retailer' | 'wholesaler' | 'brand_owner'
+
 export interface ComparisonRow {
   productLinkId: string
   yourProduct: {
@@ -130,7 +132,8 @@ export interface ComparisonRow {
     name: string
     price: number
     currency: string
-    updatedAt: Date
+    updatedAt: Date | string
+    lastScrapedAt: string | null
     priceHistory: PriceHistoryPoint[]
   }
   priceDiff: number
